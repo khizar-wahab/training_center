@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @push('title')
-Admin dashboard
+Admin Courses
 @endpush
 
 @section('content')
@@ -12,15 +12,15 @@ Admin dashboard
         @include('admin.layouts.sidebar')
     </div>
     {{-- main content --}}
-    <div class="col-9">
-        
+    <div class="col-10">
+        <button class="btn btn-primary">Add Course</button>
     </div>
 </div>
 
 @push('scripts')
     
     <script>
-        $(".nav-link:eq(0)").addClass('active');
+        $(".nav-link:eq(2)").addClass('active');
     </script>
 
 @endpush

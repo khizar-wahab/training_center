@@ -1,20 +1,14 @@
 @extends('admin.layouts.app')
 
-@push('title')
-Admin dashboard
-@endpush
-
-@section('content')
-
-<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; min-height: 100vh;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="min-height: 100vh;">
+    <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
       <span class="fs-4">Admin</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link text-white" aria-current="page">
+        <a href="{{ route('admin.dashboard') }}" class="nav-link text-white" aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
           <i class="bi bi-house-door"></i> &nbsp Home
         </a>
@@ -26,9 +20,9 @@ Admin dashboard
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a href="{{ route('adminCourse.index') }}" class="nav-link text-white">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-          Orders
+          <i class="bi bi-book"></i> &nbsp Courses
         </a>
       </li>
       <li>
@@ -58,5 +52,3 @@ Admin dashboard
       </ul>
     </div>
   </div>
-
-@endsection
