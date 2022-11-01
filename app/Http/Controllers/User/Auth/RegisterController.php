@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Auth;
 
 use App\Models\User;
+use App\Models\Barcode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,12 @@ class RegisterController extends Controller
             'email' => $request->email,
             'phone' => $request->email,
             'password' => Hash::make($request->password)
+        ]);
+
+        Barcode::create([
+            'number' => '0'.time(),
+            'type' => 0,
+            'user_id' => $user->id
         ]);
 
         Auth::login($user);

@@ -11,4 +11,10 @@ class DashboardController extends Controller
     {
         return view('user.index');
     }
+    public function barcode()
+    {
+        return view('user.barcode');
+    }
+
+
 }
