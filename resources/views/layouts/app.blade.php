@@ -23,6 +23,14 @@
     <link rel="stylesheet" href="/assets/css/responsive.css">
     <link href="~/css/site.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="/assets/images/favicon.ico">
+
+    <style>
+        @media (max-width: 767px) {
+            .ts-footer {
+                padding: 50px 0 50px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="body-inner">
