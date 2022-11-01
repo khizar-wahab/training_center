@@ -37,5 +37,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/register', [UserRegisterController::class, 'index'])->name('register');
     Route::post('/register', [UserRegisterController::class, 'register'])->name('register');
 
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::middleware(['auth:web'])->group(function () {
+        Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    });
 });
