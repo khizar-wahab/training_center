@@ -13,7 +13,7 @@ Admin Courses
     </div>
     {{-- main content --}}
     <div class="col-10">
-        <button class="btn btn-primary">Add Course</button>
+        <a href="{{ route('adminCourse.create') }}"><button class="btn btn-primary">Add Course</button></a>
     </div>
 </div>
 

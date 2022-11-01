@@ -12,7 +12,7 @@ Admin dashboard
         @include('admin.layouts.sidebar')
     </div>
     {{-- main content --}}
-    <div class="col-9">
+    <div class="col-10">
         
     </div>
 </div>
