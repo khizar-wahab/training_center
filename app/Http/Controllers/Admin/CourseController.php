@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
@@ -24,7 +25,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add_course');
     }
 
     /**
@@ -35,7 +36,19 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            // 'description' => 'required',
+        ]);
+        
+        $course = Course::create([
+            'title' => $request->title,
+            'desc' => $request->description,
+        ]);
+
+        if($course){
+            return redirect()->back()->with(session()->flash('alert', 'Course added'));
+        }
     }
 
     /**
