@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,13 @@ Route::view('/', 'index');
 | User Routes
 |--------------------------------------------------------------------------
 */
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Admin Login
+    Route::get('', [AdminLoginController:: class, 'index']);
+    Route::post('/login', [AdminLoginController:: class, 'login'])->name('login');
+    //Admin dashboard
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+});
 Route::prefix('user')->name('user.')->group(function () {
     // User Registration
     Route::get('/register', [UserRegisterController::class, 'index'])->name('register');
