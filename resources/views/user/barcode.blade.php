@@ -1,24 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    body {
+        margin-bottom: 230px;
+    }
+    .footer-area {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+</style>
 <div class="container">
-    <div class="d-flex gap-4 p-4">
-        <a class="btn btn-primary">Enroll to Courses and Workshops</a>
-        <a class="btn btn-primary">Apply for a Job</a>
+    <div class="mb-5">
+        <a class="btn btn-primary" href="{{ route('user.dashboard') }}">ارجع إلى لوحة القيادة</a>
     </div>
     @php
     $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
-@endphp
-<div class="row mb-3 justify-content-center">
-    <div class="col">
-        <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode(auth()->user()->barcode->number, $generatorPNG::TYPE_CODE_128)) }}" downloadable>
+    @endphp
+    <div class="barcode d-flex justify-content-center mb-5 p-5">
+        <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode(auth()->user()->barcode->number, $generatorPNG::TYPE_CODE_128)) }}" download style="height: 50px;">
     </div>
-</div>
-    <div class="row">
-        <div class="col">
-            <a class="btn btn-primary" href="{{ route('user.dashboard') }}"> Go To Dashboard</a>
-
-        </div>
+    <div class="text-center">
+        <a class="btn btn-warning" href="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode(auth()->user()->barcode->number, $generatorPNG::TYPE_CODE_128)) }}" download>تحميل الباركود</a>
     </div>
 </div>
 @endsection
