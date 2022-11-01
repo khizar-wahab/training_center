@@ -5,6 +5,7 @@ use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\User\CoursesController as UserCoursesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,10 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/register', [UserRegisterController::class, 'index'])->name('register');
     Route::post('/register', [UserRegisterController::class, 'register'])->name('register');
 
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::middleware(['auth:web'])->group(function () {
+        Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/barcode', [UserDashboardController::class, 'barcode'])->name('barcode');
+
+        Route::get('/courses', [UserCoursesController::class, 'index'])->name('courses');
+    });
 });
