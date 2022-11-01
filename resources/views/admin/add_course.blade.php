@@ -15,14 +15,25 @@ Admin Add Courses
     <div class="col-10">
         <div class="container">
             <form action="{{ route('adminCourse.store') }}" method="post" class="bg-white px-5 pt-3 pb-4 mt-5 border">
+                @csrf
                 <h1 class="text-secondary text-center">Add Course</h1>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Title:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <span class="text-danger">
+                        @error('title')
+                            {{ $message }}
+                        @enderror
+                    </span>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Description:</label>
-                    <textarea class="form-control" id="floatingTextarea2" style="height: 110px !important;"></textarea>
+                    <textarea class="form-control" name="description" id="floatingTextarea2" style="height: 110px !important;"></textarea>
+                    <span class="text-danger">
+                        @error('description')
+                            {{ $message }}
+                        @enderror
+                    </span>
                   </div>
                   <button class="btn btn-primary rounded">Submit</button>
             </form>
