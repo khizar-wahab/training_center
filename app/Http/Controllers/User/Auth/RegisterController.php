@@ -28,7 +28,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->email,
-            'passsword' => Hash::make($request->password)
+            'password' => Hash::make($request->password)
         ]);
 
         Auth::login($user);
