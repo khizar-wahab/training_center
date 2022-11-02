@@ -15,14 +15,15 @@
     <div class="mb-5">
         <a class="btn btn-primary" href="{{ route('user.dashboard') }}">ارجع إلى لوحة القيادة</a>
     </div>
-    @php
+    {{-- @php
     $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
-    @endphp
+    @endphp --}}
     <div class="barcode d-flex justify-content-center mb-5 p-5">
-        <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode(auth()->user()->barcode->number, $generatorPNG::TYPE_CODE_128)) }}" download style="height: 50px;">
+        {{-- <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode(auth()->user()->barcode->number, $generatorPNG::TYPE_CODE_128)) }}" download style="height: 50px;"> --}}
+        <img src="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(300)->generate(auth()->user()->barcode->number)) }}" download>
     </div>
     <div class="text-center">
-        <a class="btn btn-warning" href="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode(auth()->user()->barcode->number, $generatorPNG::TYPE_CODE_128)) }}" download>تحميل الباركود</a>
+        <a class="btn btn-warning" href="data:image/png;base64,{{ base64_encode(QrCode::format('png')->size(300)->generate(auth()->user()->barcode->number)) }}" download>تحميل الباركود</a>
     </div>
 </div>
 @endsection

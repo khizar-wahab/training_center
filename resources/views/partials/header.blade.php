@@ -32,11 +32,6 @@
                         </a>
                     </li>
 
-                    <li class="header-ticket nav-item">
-                        <a href="#popup_register" class="ticket-btn btn ts-image-popup" data-effect="mfp-zoom-in">
-                            تسجيل الزوار
-                        </a>
-                    </li>
                 </ul>
         
             </div>
@@ -48,37 +43,6 @@
     </div><!-- container end-->
 </header>
 <!--/ Header end -->
-
-
-<div id="popup_register" class="container ts-event-popup mfp-hide">
-    <div class="register-form text-right">
-        <form action="{{ route('user.register') }}" method="post">
-            @csrf
-            <input type="hidden" name="modal" value="popup_register">
-            <div class="form-group">
-                <label>الاسم الكامل</label>
-                <input type="text" class="form-control" name="name">
-            </div>
-            <div class="form-group">
-                <label>البريد الإلكتروني</label>
-                <input type="email" class="form-control" name="email">
-            </div>
-            <div class="form-group">
-                <label>هاتف</label>
-                <input type="text" class="form-control" name="phone">
-            </div>
-            <div class="form-group">
-                <label>كلمة المرور</label>
-                <input type="password" class="form-control" name="password">
-            </div>
-            <div class="form-group">
-                <label>تأكيد كلمة المرور</label>
-                <input type="password" class="form-control" name="password_confirmation">
-            </div>
-            <button type="submit" class="btn btn-success">يسجل</button>
-        </form>
-    </div>
-</div>
 
 <div id="popup_DeptRegister" class="container ts-event-popup mfp-hide">
     <div class="register-form" style="text-align:center">
