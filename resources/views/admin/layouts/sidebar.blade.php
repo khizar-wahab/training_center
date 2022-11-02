@@ -34,7 +34,7 @@
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
         <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item" href="{{ route('admin.profile') }}">Profile</a></li>
         <li><a class="dropdown-item" href="#">Logout</a></li>
       </ul>
     </div>

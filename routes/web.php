@@ -7,6 +7,7 @@ use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\User\CoursesController as UserCoursesController;
 
 /*
@@ -36,6 +37,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //Admin Dashboard
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile');
+        Route::post('/profile/update', [AdminProfileController::class, 'update_profile'])->name('profile.update');
     });
 });
 // Admin Course Crud
@@ -65,9 +68,4 @@ Route::prefix('user')->name('user.')->group(function () {
 
         Route::get('/courses', [UserCoursesController::class, 'index'])->name('courses');
     });
-});
-
-// Testing routes
-Route::get('/admin/profile', function(){
-    return view('admin.profile');
 });
