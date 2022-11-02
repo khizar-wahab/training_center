@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @push('title')
-Admin Add Course
+Admin Edit Course
 @endpush
 
 @section('content')
@@ -19,7 +19,7 @@ Admin Add Course
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="{{ route('adminCourse.index') }}">Courses</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Add Course</li>
+                      <li class="breadcrumb-item active" aria-current="page">Edit Course</li>
                     </ol>
                   </nav>
             </div>
@@ -33,12 +33,13 @@ Admin Add Course
         </div>
         
         <div class="container">
-            <form action="{{ route('adminCourse.store') }}" method="post" enctype="multipart/form-data" class="bg-white px-5 pt-3 pb-4 mt-5 border">
+            <form action="{{ route('adminCourse.update', $id) }}" method="post" enctype="multipart/form-data" class="bg-white px-5 pt-3 pb-4 mt-5 border">
                 @csrf
+                {{ method_field("PUT") }}
                 <h1 class="text-secondary text-center">Add Course</h1>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Title:</label>
-                    <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="text" name="title" @if(isset($course)) value="{{ $course->title }}" @endif value="{{ old('title') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     <span class="text-danger">
                         @error('title')
                             {{ $message }}
@@ -56,7 +57,7 @@ Admin Add Course
                   </div> --}}
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Description:</label>
-                    <textarea class="form-control" name="description" id="floatingTextarea2" style="height: 110px !important;"></textarea>
+                    <textarea class="form-control" name="description" id="edit-course-desc" style="height: 110px !important;"></textarea>
                     <span class="text-danger">
                         @error('description')
                             {{ $message }}
@@ -102,6 +103,8 @@ Admin Add Course
                 elem.fadeOut("slow");
             }, 1800);
         }
+
+        $("#edit-course-desc").val("{{ $course->desc }}");
     </script>
 
 @endpush

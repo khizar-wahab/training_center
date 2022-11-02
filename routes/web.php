@@ -28,23 +28,25 @@ Route::view('/', 'index');
 | Admin Routes
 |--------------------------------------------------------------------------
 */
+
 Route::prefix('admin')->name('admin.')->group(function () {
     // Admin Login
     Route::get('', [AdminLoginController:: class, 'index']);
     Route::post('/login', [AdminLoginController:: class, 'login'])->name('login');
     //Admin Dashboard
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    });
 });
 // Admin Course Crud
-Route::resource('adminCourse', AdminCourseController::class);
-
-
+Route::resource('adminCourse', AdminCourseController::class)->middleware(['auth:admin']);
 
 /*
 |--------------------------------------------------------------------------
 | User Routes
 |--------------------------------------------------------------------------
 */
+
 Route::prefix('user')->name('user.')->group(function () {
     // User Registration
     Route::get('/register', [UserRegisterController::class, 'index'])->name('register');
