@@ -21,30 +21,26 @@
                         </button>
                     </div>
                 @endif
-                <form action="{{ route('user.login') }}" method="post">
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ $error }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endforeach
+                <form action="{{ route('user.password.email') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label>البريد الإلكتروني</label>
+                        <label>أدخل عنوان بريدك الالكتروني</label>
                         <input type="email" class="form-control" name="email" value="{{ old('email') }}">
                         @error('email')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label class="d-flex justify-content-between">
-                            <span>كلمة المرور</span>
-                            <span>
-                                <a href="{{ route('user.password.request') }}">هل نسيت كلمة السر؟</a>
-                            </span>
-                        </label>
-                        <input type="password" class="form-control" name="password">
-                        @error('password')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <button type="submit" class="btn btn-success">تسجيل الدخول</button>
+                    <button type="submit" class="btn btn-success">إرسال بريد إلكتروني مخصص للطوارئ</button>
                 </form>
-                <p class="mt-4">ليس لديك حساب؟ <a href="{{ url('/') }}">سجل الان</a></p>
+                <p class="mt-4"><a href="{{ route('user.login') }}">تسجيل الدخول</a></p>
             </div>
         </div>
     </div>
