@@ -65,7 +65,7 @@ Route::prefix('user')->name('user.')->group(function () {
     // User password reset
     Route::get('/forgot-password', [UserForgotPasswordController::class, 'index'])->name('password.request');
     Route::post('/forgot-password', [UserForgotPasswordController::class, 'sendPasswordResetLink'])->name('password.email');
-    Route::get('/reset-password/{token}', [UserForgotPasswordController::class, 'resetPassword'])->name('password.reset');
+    Route::get('/reset-password/{token}', [UserForgotPasswordController::class, 'resetPassword'])->name('password.reset.form');
     Route::post('/reset-password', [UserForgotPasswordController::class, 'storeNewPassword'])->name('password.reset');
 
     // User logout
