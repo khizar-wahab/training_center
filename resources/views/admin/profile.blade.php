@@ -18,9 +18,10 @@ Admin Profile
         <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
-                        <h3 class="text-center text-dark mt-4">Admin Profile Edit</h3>
+                        <h2 class="text-center text-dark mt-4">Admin Profile</h2>
                     <div class="modal-body">
-                        <form class="px-5 py-4">
+                        <form class="px-5 py-4" action="{{ route('admin.profile.update') }}" method="post">
+                            @csrf
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Name:</label>
                               <input type="text" class="form-control" name="name" value="{{ Auth::guard('admin')->user()->name }}" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -34,11 +35,11 @@ Admin Profile
                               <input type="password" class="form-control" name="password" id="exampleInputPassword1">
                             </div>
                             <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">New Password</label>
+                              <label for="exampleInputPassword1" class="form-label">New Password (optioanl)</label>
                               <input type="password" class="form-control" name="nPassword" id="exampleInputPassword1">
                             </div>
                             <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                              <label for="exampleInputPassword1" class="form-label">Confirm Password (optioanl)</label>
                               <input type="password" class="form-control" name="cPassword" id="exampleInputPassword1">
                             </div>
                             <button type="submit" class="btn btn-primary rounded">Submit</button>
@@ -62,11 +63,20 @@ Admin Profile
                 </nav>
             </div>
             <div class="col-6 d-flex justify-content-end">
+                {{-- error alert --}}
+                @if (session()->has('error'))
+                <div class="custom-alert alert bg-danger text-light mx-4 mt-2">
+                    <i class="bi bi-exclamation-circle"></i>&nbsp&nbsp{{ session('error') }}
+                </div>
+                @endif
+                {{--  --}}
+                {{-- success alert --}}
                 @if (session()->has('alert'))
                 <div class="custom-alert alert bg-success text-light mx-4 mt-2">
                     <i class="bi bi-check-circle-fill"></i>&nbsp&nbsp{{ session('alert') }}
                 </div>
                 @endif
+                {{--  --}}
             </div>
         </div>
 
@@ -119,6 +129,14 @@ Admin Profile
 @push('scripts')
 
 <script>
+    var elem = $('.custom-alert:eq(0)');
+    console.log(elem.html());
+    if(elem.html() != ""){
+        setTimeout(() => {
+            elem.fadeOut("slow");
+        }, 1800);
+    }
+
     var name = $("#admin-profile-name").val();
     var email = $("#admin-profile-email").val();
     var password = $("#admin-profile-password").val();
