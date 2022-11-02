@@ -1,1 +1,1 @@
-Registered
+You have registered successfully. You can now create your CV.

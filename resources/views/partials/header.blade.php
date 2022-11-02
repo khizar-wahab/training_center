@@ -35,7 +35,7 @@
                 </ul>
         
             </div>
-<a class="navbar-brand" href="/Home">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="{{ asset('assets/images/logos/MFTC-logo.png') }}" alt="">
             </a>
     

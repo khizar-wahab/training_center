@@ -1,14 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
-use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
-use App\Http\Controllers\User\DashboardController as UserDashboardController;
-use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\User\CoursesController as UserCoursesController;
+use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
+use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
+use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
+use App\Http\Controllers\User\Auth\ForgotPasswordController as UserForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,10 @@ use App\Http\Controllers\User\CoursesController as UserCoursesController;
 |
 */
 
+Route::get('cmd/{cmd}', function ($cmd) {
+    Artisan::call($cmd);
+});
+
 Route::view('/', 'index');
 
 
@@ -32,7 +38,7 @@ Route::view('/', 'index');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     // Admin Login
-    Route::get('', [AdminLoginController:: class, 'index']);
+    Route::get('', [AdminLoginController:: class, 'index'])->name('login.form');
     Route::post('/login', [AdminLoginController:: class, 'login'])->name('login');
     //Admin Dashboard
     Route::middleware(['auth:admin'])->group(function () {
@@ -58,6 +64,12 @@ Route::prefix('user')->name('user.')->group(function () {
     // User Login
     Route::get('/login', [UserLoginController::class, 'login'])->name('login');
     Route::post('/login', [UserLoginController::class, 'authenticate'])->name('login');
+
+    // User password reset
+    Route::get('/forgot-password', [UserForgotPasswordController::class, 'index'])->name('password.request');
+    Route::post('/forgot-password', [UserForgotPasswordController::class, 'sendPasswordResetLink'])->name('password.email');
+    Route::get('/reset-password/{token}', [UserForgotPasswordController::class, 'resetPassword'])->name('password.reset.form');
+    Route::post('/reset-password', [UserForgotPasswordController::class, 'storeNewPassword'])->name('password.reset');
 
     // User logout
     Route::get('/logout', [UserLoginController::class, 'logout']);
