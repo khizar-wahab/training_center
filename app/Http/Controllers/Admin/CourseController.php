@@ -19,7 +19,7 @@ class CourseController extends Controller
         if($request->search != ""){
             $courses = Course::where('title', "LIKE", "%$request->search%")->paginate(10);
         }else{
-            $courses = Course::paginate(10);
+            $courses = Course::paginate(8);
         }
         return view("admin.course", compact('courses'));
     }
@@ -44,7 +44,11 @@ class CourseController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            // 'description' => 'required',
+            'day' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'gender' => 'required',
+            // 'trainingProvider' => 'required',
         ]);
 
         if($request->hasFile('img')){
@@ -56,8 +60,11 @@ class CourseController extends Controller
         
         $course = Course::create([
             'title' => $request->title,
-            'duration' => $request->duration,
-            'desc' => $request->description,
+            'day' => $request->day,
+            'date' => $request->date,
+            'time' => $request->time,
+            'gender' => $request->gender,
+            'traiPro' => $request->trainingProvider,
             'img_path' => $img_path,
         ]);
 
@@ -100,15 +107,31 @@ class CourseController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            // 'description' => 'required',
+            'day' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'gender' => 'required',
+            // 'trainingProvider' => 'required',
         ]);
 
         $course = Course::find($id);
 
+        if($request->hasFile('img')){
+            $img_path = time().rand(123, 987).rand(1000, 9000).'-course.'.$request->img->extension();
+            $request->img->move(public_path('/assets/images/course'), $img_path);
+        }else{
+            $img_path = $course->img_path;
+        }
+
         if($course){
             $course->update([
                 'title' => $request->title,
-                'desc' => $request->description,
+                'day' => $request->day,
+                'date' => $request->date,
+                'time' => $request->time,
+                'gender' => $request->gender,
+                'traiPro' => $request->trainingProvider,
+                'img_path' => $img_path,
             ]);
             return redirect()->back()->with(session()->flash('alert', 'Course updated'));
         }else{

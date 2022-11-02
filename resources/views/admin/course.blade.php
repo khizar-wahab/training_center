@@ -24,9 +24,10 @@ Admin Courses
             </div>
             <div class="col-6 d-flex justify-content-end">
                 @if (session()->has('alert'))
-                <div class="custom-alert alert bg-success text-light mx-4 mt-2">
-                    <i class="bi bi-check-circle-fill"></i>&nbsp&nbsp{{ session('alert') }}
-                </div>
+                        <div class="custom-alert alert bg-success text-light mx-4 mt-2">
+                            <i class="bi bi-check-circle-fill"></i>&nbsp&nbsp{{ session('alert') }}
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>
@@ -58,10 +59,12 @@ Admin Courses
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Title</th>
-                        {{-- <th scope="col">Duration</th> --}}
-                        <th scope="col">Description</th>
+                        <th scope="col">Day</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Training Provider</th>
                         <th scope="col">Members</th>
-                        {{-- <th scope="col">img</th> --}}
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -70,11 +73,12 @@ Admin Courses
                     <tr>
                         <th>{{ $course->id }}</th>
                         <td>{{ $course->title }}</td>
-                        {{-- <td>{{ $course->duration }}</td> --}}
-                        <td>{{ $course->desc }}</td>
+                        <td>{{ $course->day }}</td>
+                        <td>{{ $course->date }}</td>
+                        <td>{{ $course->time }}</td>
+                        <td>{{ $course->gender }}</td>
+                        <td>{{ $course->traiPro }}</td>
                         <td>{{ $course->members }}</td>
-                        {{-- <td class="view-course-img text-primary" data-img_path="{{ $course->members }}">view</td>
-                        --}}
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle rounded" type="button"
@@ -100,8 +104,17 @@ Admin Courses
                     @endforeach
                 </tbody>
             </table>
-            @if ($courses->links() !== "")
-            {{ $courses->links() }}
+            <div class="row">
+                <div class="col-6">
+                    @if ($courses->links() !== "")
+                    {{ $courses->links() }}
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <a href="{{ route("adminCourse.create") }}">
+                        <button class="btn btn-primary rounded d-flex align-items-center admin-add-items">Add Course</button>
+                    </a>
+                </div>
+            </div>
             @endif
 
     </div>
@@ -126,8 +139,6 @@ Admin Courses
                 elem.fadeOut("slow");
             }, 1800);
         }
-    
-
 </script>
 
 @endpush
