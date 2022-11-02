@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Course;
 
@@ -13,9 +14,14 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view("admin.course");
+        if($request->search != ""){
+            $courses = Course::where('title', "LIKE", "%$request->search%")->paginate(10);
+        }else{
+            $courses = Course::paginate(10);
+        }
+        return view("admin.course", compact('courses'));
     }
 
     /**
@@ -40,10 +46,19 @@ class CourseController extends Controller
             'title' => 'required',
             // 'description' => 'required',
         ]);
+
+        if($request->hasFile('img')){
+            $img_path = time().rand(123, 987).rand(1000, 9000).'-course.'.$request->img->extension();
+            $request->img->move(public_path('/assets/images/course'), $img_path);
+        }else{
+            $img_path = "";
+        }
         
         $course = Course::create([
             'title' => $request->title,
+            'duration' => $request->duration,
             'desc' => $request->description,
+            'img_path' => $img_path,
         ]);
 
         if($course){
@@ -70,7 +85,8 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        return view('admin.edit_course', compact('course', 'id'));
     }
 
     /**
@@ -82,7 +98,22 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            // 'description' => 'required',
+        ]);
+
+        $course = Course::find($id);
+
+        if($course){
+            $course->update([
+                'title' => $request->title,
+                'desc' => $request->description,
+            ]);
+            return redirect()->back()->with(session()->flash('alert', 'Course updated'));
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -93,6 +124,12 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        if($course){
+            $course->delete();
+            return redirect()->back()->with(session()->flash('alert', 'Course deleted'));
+        }else{
+            return redirect()->back();
+        }
     }
 }
