@@ -42,21 +42,21 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        //Mail::to($user)->send(new Registered());
+        Mail::to($user)->send(new Registered());
 
-        $to = $user->email;
-        $subject = "MFTC Training Registration";
+        // $to = $user->email;
+        // $subject = "MFTC Training Registration";
 
-        $message = "You have registered successfully. You can now create your CV.";
+        // $message = "You have registered successfully. You can now create your CV.";
 
-        // Always set content-type when sending HTML email
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        // // Always set content-type when sending HTML email
+        // $headers = "MIME-Version: 1.0" . "\r\n";
+        // $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-        // More headers
-        $headers .= 'From: <info@mftctraining.com>' . "\r\n";
+        // // More headers
+        // $headers .= 'From: <info@mftctraining.com>' . "\r\n";
 
-        mail($to, $subject, $message, $headers);
+        // mail($to, $subject, $message, $headers);
 
         return redirect()->route('user.barcode');
     }
