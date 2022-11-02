@@ -10,8 +10,12 @@ class Course extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'duration',
-        'desc',
+        'day',
+        'date',
+        'time',
+        'gender',
+        'traiPro',
+        'members',
         'img_path',
     ];
 }

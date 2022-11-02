@@ -78,3 +78,8 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/courses', [UserCoursesController::class, 'index'])->name('courses');
     });
 });
+
+// Testing routes
+Route::get('/admin/profile', function(){
+    return view('admin.profile');
+});

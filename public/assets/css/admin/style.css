@@ -21,6 +21,13 @@ input {
     text-decoration: underline;
     cursor: pointer;
 }
+.admin-add-items {
+    max-height: 38px;
+}
+#admin-profile-toggle-password {
+    cursor: pointer;
+}
+
 /* admin course search */
 .search{
 position: relative;

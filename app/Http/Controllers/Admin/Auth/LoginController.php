@@ -25,6 +25,7 @@ class LoginController extends Controller
         if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])){
             $admin = Admin::where('email', $request->email)->first();
             Auth::guard('admin')->login($admin);
+            session()->put('admin_password', $request->password);
             return redirect('/admin/dashboard');
         }else{
             return redirect()->back()->with(session()->flash('error', 'Invalid credentials!'));
