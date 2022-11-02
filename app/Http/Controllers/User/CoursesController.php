@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CoursesController extends Controller
 {
     public function index()
     {
-        return view('user.courses');
+        $courses = Course::all();
+        return view('user.courses', compact('courses'));
     }
 }
