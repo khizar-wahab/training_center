@@ -45,46 +45,80 @@ Admin Add Course
                         @enderror
                     </span>
                   </div>
-                {{-- <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Duration:</label>
-                    <input type="text" name="duration" value="{{ old('duration') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <span class="text-danger">
-                        @error('duration')
-                            {{ $message }}
-                        @enderror
-                    </span>
-                  </div> --}}
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Description:</label>
-                    <textarea class="form-control" name="description" id="floatingTextarea2" style="height: 110px !important;"></textarea>
-                    <span class="text-danger">
-                        @error('description')
-                            {{ $message }}
-                        @enderror
-                    </span>
+                  <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Day:</label>
+                            <input type="text" name="day" value="{{ old('day') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <span class="text-danger">
+                                @error('day')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                          </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Date:</label>
+                            <input type="date" name="date" value="{{ old('date') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <span class="text-danger">
+                                @error('date')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                          </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Time:</label>
+                            <input type="time" name="time" value="{{ old('time') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <span class="text-danger">
+                                @error('time')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                          </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Gender:</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input rounded-circle" type="radio" name="gender" value="Male" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          Male
+                                        </label>
+                                      </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input rounded-circle" type="radio" name="gender" value="Female" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          Female
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+                            <span class="text-danger">
+                                @error('gender')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                          </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Training provider:</label>
+                            <input type="text" name="trainingProvider" value="{{ old('trainingProvider') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <span class="text-danger">
+                                @error('trainingProvider')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                          </div>
+                    </div>
                   </div>
-                  {{-- <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Members:</label>
-                    <select id="select" multiple>
-                        <option value="best">Best</option>
-                        <option value="select">Select</option>
-                        <option value="ever">Ever</option>
-                      </select>
-                    <span class="text-danger">
-                        @error('description')
-                            {{ $message }}
-                        @enderror
-                    </span>
-                  </div> --}}
-                  {{-- <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Image:</label>
-                    <input type="file" name="img" value="{{ old('img') }}" class="form-control file-input" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <span class="text-danger">
-                        @error('img')
-                            {{ $message }}
-                        @enderror
-                    </span>
-                  </div> --}}
                   <button class="btn btn-primary rounded">Submit</button>
             </form>
         </div>
@@ -105,18 +139,5 @@ Admin Add Course
     </script>
 
 @endpush
-{{-- jquery multiselect --}}
-{{-- @push('scripts')
-    
-    <script>
-        setTimeout(function() {
-        new SlimSelect({
-          select: '#select'
-            })
-        }, 300)
-        $(".ss-disabled:eq(0)").html("Select members");
-    </script>
-
-@endpush --}}
 
 @endsection
