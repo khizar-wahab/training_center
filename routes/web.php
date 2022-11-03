@@ -28,6 +28,12 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 |
 */
 
+Route::get('/mailable', function () {
+    $tickets = App\Models\Ticket::all();
+
+    return new App\Mail\CourseEnrolled($tickets);
+});
+
 Route::get('cmd/{cmd}', function ($cmd) {
     Artisan::call($cmd);
     echo "<pre style='color:white;background-color:black;padding:20px;'>";

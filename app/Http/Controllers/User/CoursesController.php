@@ -9,7 +9,9 @@ use App\Models\UserCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\CourseEnrolled;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CoursesController extends Controller
 {
@@ -62,6 +64,7 @@ class CoursesController extends Controller
             'courses' => 'required|array|min:1'
         ]);
 
+        $tickets = [];
         foreach ($request->courses as $id) {
             $course = Course::find($id);
             
@@ -86,12 +89,16 @@ class CoursesController extends Controller
                 'qrcode_number' => $qrcode,
             ]);
 
+            $tickets[] = $ticket;
+
             Barcode::create([
                 'number' => $qrcode,
                 'type' => 2,
                 'user_id' => $ticket->id
             ]);
         }
+
+        Mail::to(Auth::user())->send(new CourseEnrolled($tickets));
 
         return back()->with('success', 'Successfully enrolled in selected courses');
     }
