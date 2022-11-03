@@ -43,6 +43,7 @@ Route::get('cmd/{cmd}', function ($cmd) {
 Route::view('/', 'index')->middleware('guest:web');
 
 Route::get('/details/{code}',[FrontController::class, 'details']);
+Route::get('/jobs/{code}',[FrontController::class, 'jobs']);
 
 /*
 |--------------------------------------------------------------------------
