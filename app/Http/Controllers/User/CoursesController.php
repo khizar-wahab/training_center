@@ -47,7 +47,7 @@ class CoursesController extends Controller
 
         Barcode::create([
             'number' => $qrcode,
-            'type' => 3,
+            'type' => 2,
             'user_id' => $ticket->id
         ]);
 
@@ -88,7 +88,7 @@ class CoursesController extends Controller
 
             Barcode::create([
                 'number' => $qrcode,
-                'type' => 3,
+                'type' => 2,
                 'user_id' => $ticket->id
             ]);
         }

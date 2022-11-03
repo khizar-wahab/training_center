@@ -31,4 +31,15 @@ class LoginController extends Controller
             return redirect()->back()->with(session()->flash('error', 'Invalid credentials!'));
         }
     }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.login.form');
+    }
 }

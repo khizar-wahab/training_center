@@ -23,4 +23,9 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class, 'user_courses');
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

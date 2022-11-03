@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\User\CoursesController as UserCoursesController;
+use App\Http\Controllers\User\TicketsController as UserTicketsController;
 use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
@@ -39,8 +40,14 @@ Route::view('/', 'index')->middleware('guest:web');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     // Admin Login
-    Route::get('', [AdminLoginController:: class, 'index'])->name('login.form');
-    Route::post('/login', [AdminLoginController:: class, 'login'])->name('login');
+    Route::middleware('guest:admin')->group(function () {
+        Route::get('', [AdminLoginController::class, 'index'])->name('login.form');
+        Route::post('/login', [AdminLoginController::class, 'login'])->name('login');
+    });
+
+    // Admin logout
+    Route::get('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+    
     //Admin Dashboard
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
@@ -87,5 +94,7 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/courses', [UserCoursesController::class, 'index'])->name('courses');
         Route::post('/courses/{course}/enroll', [UserCoursesController::class, 'enroll'])->name('courses.enroll');
         Route::post('/courses/enroll', [UserCoursesController::class, 'enrollMultiple'])->name('courses.enroll.multiple');
+
+        Route::get('/tickets', [UserTicketsController::class, 'index'])->name('tickets.index');
     });
 });
