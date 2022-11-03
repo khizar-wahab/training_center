@@ -13,4 +13,9 @@ class CoursesController extends Controller
         $courses = Course::all();
         return view('user.courses', compact('courses'));
     }
+
+    public function enroll(Course $course, Request $request)
+    {
+        dd($course);
+    }
 }

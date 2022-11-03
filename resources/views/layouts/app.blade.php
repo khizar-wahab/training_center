@@ -24,6 +24,12 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="/assets/images/favicon.ico">
 
+    <script src="/assets/js/jquery.js"></script>
+
+    <script src="/assets/js/popper.min.js"></script>
+    <!-- Bootstrap jQuery -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+
     <style>
         @media (max-width: 767px) {
             .ts-footer {
@@ -42,11 +48,6 @@
     </div>
     <!-- Body inner end -->
 
-    <script src="/assets/js/jquery.js"></script>
-
-    <script src="/assets/js/popper.min.js"></script>
-    <!-- Bootstrap jQuery -->
-    <script src="/assets/js/bootstrap.min.js"></script>
     <!-- Counter -->
     <script src="/assets/js/jquery.appear.min.js"></script>
     <!-- Countdown -->

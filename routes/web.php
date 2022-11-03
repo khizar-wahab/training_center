@@ -54,12 +54,12 @@ Route::resource('adminCourse', AdminCourseController::class)->middleware(['auth:
 // Admin User Crud
 Route::resource('adminUser', AdminUserController::class)->middleware(['auth:admin']);
 
+
 /*
 |--------------------------------------------------------------------------
 | User Routes
 |--------------------------------------------------------------------------
 */
-
 Route::prefix('user')->name('user.')->group(function () {
     // User Registration
     Route::get('/register', [UserRegisterController::class, 'index'])->name('register');
@@ -83,5 +83,6 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/barcode', [UserDashboardController::class, 'barcode'])->name('barcode');
 
         Route::get('/courses', [UserCoursesController::class, 'index'])->name('courses');
+        Route::get('/courses/{course}/enroll', [UserCoursesController::class, 'enroll'])->name('courses.enroll');
     });
 });
