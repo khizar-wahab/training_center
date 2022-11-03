@@ -24,14 +24,14 @@
                 <form action="{{ route('user.login') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label>البريد الإلكتروني</label>
+                        <label title="Enter email">البريد الإلكتروني</label>
                         <input type="email" class="form-control" name="email" value="{{ old('email') }}">
                         @error('email')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="d-flex justify-content-between">
+                        <label class="d-flex justify-content-between" title="Password">
                             <span>كلمة المرور</span>
                             <span>
                                 <a href="{{ route('user.password.request') }}">هل نسيت كلمة السر؟</a>
@@ -42,7 +42,7 @@
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-success">تسجيل الدخول</button>
+                    <button type="submit" class="btn btn-success" title="Login">تسجيل الدخول</button>
                 </form>
                 <p class="mt-4">ليس لديك حساب؟ <a href="{{ url('/') }}">سجل الان</a></p>
             </div>

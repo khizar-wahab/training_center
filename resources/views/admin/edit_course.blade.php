@@ -36,7 +36,7 @@ Admin Edit Course
             <form action="{{ route('adminCourse.update', $id) }}" method="post" enctype="multipart/form-data" class="bg-white px-5 pt-3 pb-4 mt-5 border">
                 @csrf
                 {{ method_field("PUT") }}
-                <h1 class="text-secondary text-center">Add Course</h1>
+                <h1 class="text-secondary text-center">Edit Course</h1>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Title:</label>
                     <input type="text" name="title" @if(isset($course)) value="{{ $course->title }}" @endif value="{{ old('title') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
