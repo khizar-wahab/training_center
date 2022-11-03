@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\User\CoursesController as UserCoursesController;
 use App\Http\Controllers\User\TicketsController as UserTicketsController;
+use App\Http\Controllers\User\JobsController as UserJobsController;
 use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
@@ -100,5 +101,7 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::post('/courses/enroll', [UserCoursesController::class, 'enrollMultiple'])->name('courses.enroll.multiple');
 
         Route::get('/tickets', [UserTicketsController::class, 'index'])->name('tickets.index');
+
+        Route::get('/jobs', [UserJobsController::class, 'index'])->name('jobs');
     });
 });

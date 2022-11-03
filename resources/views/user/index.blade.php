@@ -8,7 +8,7 @@
     </div>
     <div class="d-flex gap-4 p-4 justify-content-center">
         <a href="{{ route('user.courses') }}" class="btn btn-primary mx-4">التسجيل في الدورات وورش العمل</a>
-        <a href="javascript:void(0)" class="btn btn-primary mx-4">التقديم لوظيفة</a>
+        <a href="{{ route('user.jobs') }}" class="btn btn-primary mx-4">التقديم لوظيفة</a>
     </div>
 </div>
 @endsection
