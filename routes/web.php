@@ -9,6 +9,7 @@ use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
 use App\Http\Controllers\User\Auth\ForgotPasswordController as UserForgotPasswordController;
 
@@ -30,7 +31,7 @@ Route::get('cmd/{cmd}', function ($cmd) {
 });
 
 Route::view('/', 'index');
-
+Route::get('/details/{code}',[FrontController::class, 'details']);
 
 /*
 |--------------------------------------------------------------------------
