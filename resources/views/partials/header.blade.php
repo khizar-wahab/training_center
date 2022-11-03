@@ -24,9 +24,8 @@
                         <a class="ts-scroll" href="#Contact">للتواصل</a>
                     </li>
                     <li class="nav-item">
-                        <a class="  " href="{{ route('register-company') }}">تسجيل الشركة</a>
+                        <a class="" href="{{ route('register-company') }}">تسجيل الشركة</a>
                     </li>
-
                     <li class="header-ticket nav-item">
                         <a href="#popup_DeptRegister" class="ticket-btn btn ts-image-popup" data-effect="mfp-zoom-in">
                             تسجيل الجهات

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Ramsey\Uuid\Generator\CombGenerator;
 
 class CompanyController extends Controller
 {
@@ -42,8 +43,8 @@ class CompanyController extends Controller
         ]);
 
         Barcode::create([
-            'number' => '0'.time(),
-            'type' => 0,
+            'number' => '1'.time(),
+            'type' => 1,
             'user_id' => $user->id
         ]);
 
@@ -58,20 +59,17 @@ class CompanyController extends Controller
     {
         if(auth()->guard('web')->user()->type==1){
             $user_id=auth()->guard('web')->user()->id;
-            $company=Company::where('user_id',$user_id)->get() ?? '';
+            $company=Company::where('user_id',$user_id)->first() ?? '';
             return view('company.profile',compact('company'));
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Company $company)
+    public function updateCompany()
     {
-        //
+        if(auth()->guard('web')->user()->type==1){
+            $user_id=auth()->guard('web')->user()->id;
+            $company=Company::where('user_id',$user_id)->first() ?? '';
+            return view('company.edit',compact('company'));
+        }
     }
 
     /**
@@ -94,7 +92,39 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+        ]);
+        if (auth()->guard('web')->user()->type==1) {
+            $user_id=auth()->guard('web')->user()->id;
+            $company=Company::where('user_id', $user_id)->first() ?? new Company();
+            $company->name=$request->name;
+            $company->user_id=$user_id;
+            $company->email=$request->email;
+            $company->phone=$request->phone;
+            $company->website=$request->website;
+            $company->street=$request->street;
+            $company->city=$request->city;
+            $company->state=$request->state;
+            $company->address=$request->address;
+            $company->description=$request->description;
+            if($request->has('image')){
+                if($company->image){
+                    $image_path = public_path('storage/'.$company->image);
+                    if (file_exists($image_path)) {
+                        unlink($image_path);
+                    }
+                }
+                
+            $path = $request->file('image')->store('/images/company','public');
+            $company->image=$path;
+            }
+
+            if($company->save()){
+                return redirect()->back()->with('success','Company Profile Updated Successfully');
+            }
+        }
+
     }
 
     /**
