@@ -116,3 +116,5 @@ Route::prefix('user')->name('user.')->group(function () {
 Route::get('/company',[CompanyController::class,'index'])->name('register-company');
 Route::post('/company/register',[CompanyController::class,'register'])->name('company.register');
 Route::get('/company/profile',[CompanyController::class,'profile'])->name('company.profile');
+Route::get('/company/update/{id?}',[CompanyController::class,'updateCompany'])->name('update-company');
+Route::post('/company/update/',[CompanyController::class,'update'])->name('company.update');
