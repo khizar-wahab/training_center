@@ -8,35 +8,35 @@
                 <form action="{{ route('user.register') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label>الاسم الكامل</label>
+                        <label title="Enter name">الاسم الكامل</label>
                         <input type="text" class="form-control" name="name">
                         @error('name')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>البريد الإلكتروني</label>
+                        <label title="Enter email">البريد الإلكتروني</label>
                         <input type="email" class="form-control" name="email">
                         @error('email')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>هاتف</label>
+                        <label title="Enter phone">هاتف</label>
                         <input type="text" class="form-control" name="phone">
                         @error('phone')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>كلمة المرور</label>
+                        <label title="Enter password (8-16)">كلمة المرور</label>
                         <input type="password" class="form-control" name="password">
                         @error('password')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>تأكيد كلمة المرور</label>
+                        <label title="Confirm password">تأكيد كلمة المرور</label>
                         <input type="password" class="form-control" name="password_confirmation">
                     </div>
                     <button type="submit" class="btn btn-success">يسجل</button>
