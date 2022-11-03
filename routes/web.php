@@ -83,6 +83,7 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/barcode', [UserDashboardController::class, 'barcode'])->name('barcode');
 
         Route::get('/courses', [UserCoursesController::class, 'index'])->name('courses');
-        Route::get('/courses/{course}/enroll', [UserCoursesController::class, 'enroll'])->name('courses.enroll');
+        Route::post('/courses/{course}/enroll', [UserCoursesController::class, 'enroll'])->name('courses.enroll');
+        Route::post('/courses/enroll', [UserCoursesController::class, 'enrollMultiple'])->name('courses.enroll.multiple');
     });
 });
