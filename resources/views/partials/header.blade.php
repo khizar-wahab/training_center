@@ -105,10 +105,18 @@
 
                                 if(null != lastResult && undefined != lastResult && typeof(lastResult) == 'string'){
                                     let type = lastResult[0];
-                                    if(type == '0' || type == '1'){
+                                    if(type == '0'){
                                         //alert('scanned id: ' + lastResult);
                                         window.location.href = '/details/' + lastResult;
+                                    }else if(type == '1'){
+                                        //for company jobs
+                                        window.location.href = '/jobs/' + lastResult;
+
+                                    }else if(type == '2'){
+                                        // for course details
+                                        window.location.href = '/course-detail/' + lastResult;
                                     }
+
                                 }
                             }
                         }
