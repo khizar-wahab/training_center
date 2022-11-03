@@ -12,38 +12,29 @@ Admin Users
         @include('admin.layouts.sidebar')
     </div>
     {{-- main content --}}
-    <div class="col-10">
+    <div class="col-xl-10 col-sm-12">
 
-        <div class="row">
-            <div class="col-6">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Users</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="col-6 d-flex justify-content-end">
-                
-            </div>
-            
-        </div>
+        <div class="container px-4 pt-1 pb-3 mt-5">
 
-        <div class="container bg-white px-4 pt-1 pb-3 mt-2 border">
-            <h1 class="text-secondary text-center mt-2">Users</h1>
-
-            <table class="table mt-3">
-                <thead class="table-dark">
-                    <tr>
+            <div class="card mt-5 pt-4 pb-4">
+                <div class="card-body">
+                  <h2 class="text-center">Users</h2>
+    
+                  <!-- Default Table -->
+                  <table class="table table-responsive-md">
+                    <thead>
+                      <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody class=" border">
-                  @foreach ($users as $user)
-                    <tr>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       @foreach ($users as $user)
+                           
+                       <tr>
                         <th>{{ $user->id }}</th>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
@@ -70,9 +61,14 @@ Admin Users
                             </div>
                         </td>
                     </tr>
-                    @endforeach
-                </tbody>
-            </table>
+
+                       @endforeach
+                    </tbody>
+                  </table>
+                  <!-- End Default Table Example -->
+                </div>
+              </div>
+
             <div class="row">
                 <div class="col-6">
                     @if ($users->links() !== "")
@@ -90,7 +86,7 @@ Admin Users
 @push('scripts')
 
 <script>
-    $(".nav-link:eq(1)").addClass('active');
+    $(".sidebar-item:eq(1)").removeClass('collapsed');
         var elem = $('.custom-alert:eq(0)');
         console.log(elem.html());
         if(elem.html() != ""){

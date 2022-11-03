@@ -12,7 +12,7 @@ Admin Profile
         @include('admin.layouts.sidebar')
     </div>
     {{-- main content --}}
-    <div class="col-10">
+    <div class="col-xl-10 col-sm-12">
 
         <!-- Modal -->
         <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -53,36 +53,9 @@ Admin Profile
         </div>
          <!--  -->
 
-        <div class="row">
-            <div class="col-6">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('adminCourse.index') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Admin Profile</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="col-6 d-flex justify-content-end">
-                {{-- error alert --}}
-                @if (session()->has('error'))
-                <div class="custom-alert alert bg-danger text-light mx-4 mt-2">
-                    <i class="bi bi-exclamation-circle"></i>&nbsp&nbsp{{ session('error') }}
-                </div>
-                @endif
-                {{--  --}}
-                {{-- success alert --}}
-                @if (session()->has('alert'))
-                <div class="custom-alert alert bg-success text-light mx-4 mt-2">
-                    <i class="bi bi-check-circle-fill"></i>&nbsp&nbsp{{ session('alert') }}
-                </div>
-                @endif
-                {{--  --}}
-            </div>
-        </div>
-
         <div class="container">
             <form action="{{ route('adminCourse.store') }}" method="post" enctype="multipart/form-data"
-                class="bg-white px-5 py-5 mt-5 border">
+                class="bg-white px-5 py-5 card" style="margin-top: 200px">
                 @csrf
                 <h1 class="text-secondary text-center">Admin Profile</h1>
                 <div class="mb-4">
@@ -118,10 +91,12 @@ Admin Profile
                         @enderror
                     </span>
                 </div>
-                <button  class="btn btn-primary rounded" id="admin-profile-modal" data-bs-toggle="modal" data-bs-target="#profileModal">Edit Profile</button>
-                {{-- <i class="bi bi-eye"></i> --}}
+            </form>
+
+            <button  class="btn btn-primary rounded" id="admin-profile-modal" data-bs-toggle="modal" data-bs-target="#profileModal">Edit Profile</button>
+
         </div>
-        </form>
+
     </div>
 </div>
 </div>
@@ -129,6 +104,7 @@ Admin Profile
 @push('scripts')
 
 <script>
+    $(".sidebar-item:eq(3)").removeClass('collapsed');
     var elem = $('.custom-alert:eq(0)');
     console.log(elem.html());
     if(elem.html() != ""){
