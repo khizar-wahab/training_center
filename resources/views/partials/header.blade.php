@@ -24,11 +24,15 @@
                         <a class="ts-scroll" href="#Contact">للتواصل</a>
                     </li>
 
-                    
-
                     <li class="header-ticket nav-item">
                         <a href="#popup_DeptRegister" class="ticket-btn btn ts-image-popup" data-effect="mfp-zoom-in">
                             تسجيل الجهات
+                        </a>
+                    </li>
+
+                    <li class="header-ticket nav-item">
+                        <a href="#popup_qrscanner" class="btn ts-image-popup d-flex justify-content-center align-items-center" data-effect="mfp-zoom-in">
+                            <i class="fa fa-qrcode fa-2x"></i>
                         </a>
                     </li>
 
@@ -54,6 +58,59 @@
 
             (خاص للجهات والمؤسسات)
         </p>
+        
+        
+        <br />
+        <a style="color: #073969; font-size:35px" href="mailto:fsalzahrani@waqf.org.sa">fsalzahrani@waqf.org.sa</a>
+
+    </div>
+
+</div>
+
+<!-- Modal for qr code scaner -->
+<div id="popup_qrscanner" class="container ts-event-popup mfp-hide">
+    <div class="register-form" style="text-align:center">
+        <p style="color: #a91c1c; font-weight:500; font-size:30px; text-align: center">
+
+            للحصول على الدليل التعريفي بالملتقى
+        </p>
+
+        <!-- main code starts here -->
+        <div class="row">
+            <div class="col py-4 my-4">
+                <div class="d-flex justify-content-center">
+                    <script src="/assets/js/html5-qrcode.min.js"></script>
+                    <div id="qr-reader" style="width:500px"></div>
+                    <div id="qr-reader-results"></div>
+                    <script>
+                        var resultContainer = document.getElementById('qr-reader-results');
+                        var lastResult, countResults = 0;
+
+                        function onScanSuccess(decodedText, decodedResult) {
+                            if (decodedText !== lastResult) {
+                                ++countResults;
+                                lastResult = decodedText;
+                                // Handle on success condition with the decoded message.
+                                console.log(`Scan result ${decodedText}`);
+                                console.log(decodedResult);
+
+                                if(null != lastResult && undefined != lastResult && typeof(lastResult) == 'string'){
+                                    let type = lastResult[0];
+                                    if(type == '0' || type == '1'){
+                                        //alert('scanned id: ' + lastResult);
+                                        window.location.href = '/details/' + lastResult;
+                                    }
+                                }
+                            }
+                        }
+
+                        var html5QrcodeScanner = new Html5QrcodeScanner(
+                            "qr-reader", { fps: 10, qrbox: 250 });
+                            html5QrcodeScanner.render(onScanSuccess);
+                    </script>
+                </div>
+            </div>
+        </div>
         
         
         <br />
