@@ -9,6 +9,8 @@ use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
 use App\Http\Controllers\User\Auth\ForgotPasswordController as UserForgotPasswordController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -26,10 +28,12 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 Route::get('cmd/{cmd}', function ($cmd) {
     Artisan::call($cmd);
+    echo "<pre style='color:white;background-color:black;padding:20px;'>";
+    return Artisan::output();
 });
 
 Route::view('/', 'index');
-
+Route::get('/details/{code}',[FrontController::class, 'details']);
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +87,10 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/barcode', [UserDashboardController::class, 'barcode'])->name('barcode');
 
         Route::get('/courses', [UserCoursesController::class, 'index'])->name('courses');
-        Route::get('/courses/{course}/enroll', [UserCoursesController::class, 'enroll'])->name('courses.enroll');
+        Route::post('/courses/{course}/enroll', [UserCoursesController::class, 'enroll'])->name('courses.enroll');
+        Route::post('/courses/enroll', [UserCoursesController::class, 'enrollMultiple'])->name('courses.enroll.multiple');
     });
 });
+Route::get('/company',[CompanyController::class,'index'])->name('register-company');
+Route::post('/company/register',[CompanyController::class,'register'])->name('company.register');
+Route::get('/company/profile',[CompanyController::class,'profile'])->name('company.profile');

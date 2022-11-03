@@ -21,6 +21,6 @@ class Course extends Model
 
     public function users()
     {
-        return $this->hasManyThrough(User::class, UserCourse::class);
+        return $this->belongsToMany(User::class, 'user_courses');
     }
 }

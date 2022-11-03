@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Barcode extends Model
+class Ticket extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'number',
         'user_id',
-        'type'
+        'course_id',
+        'qrcode_number'
     ];
-
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
 }

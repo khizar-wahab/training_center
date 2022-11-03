@@ -2,14 +2,46 @@
 
 @section('content')
 <div class="container py-4">
+    <form action="{{ route('user.courses.enroll.multiple') }}" method="post" id="enrollMultipleForm" class="mb-4">
+        @csrf
+        <button type="submit" id="enrollSelected" class="btn btn-primary">Enroll in Selected Courses</button>
+    </form>
+    @if ($message = session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @error('courses')
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        You did not select any course
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     <div class="row">
         @forelse ($courses as $course)
+        @php
+            $enrolled = $course->users()->where('user_id', auth()->id())->first();
+        @endphp
         <div class="course-wrap col-12 col-sm-2 col-md-3 col-lg-4 mb-4">
             <div class="card w-100" style="width: 18rem;">
                 <div class="card-body">
+                    @if ($enrolled)
+                        <input type="checkbox" checked readonly>
+                    @else
+                        <input type="checkbox" class="select-course" name="courses[]" value="{{ $course->id }}" form="enrollMultipleForm">
+                    @endif
                     <h3 class="card-title">{{ $course->title }}</h3>
                     <p class="card-text"><b>Training Provider: </b>{{ $course->traiPro }}</p>
-                    <button class="btn btn-primary enroll-course-btn" data-enroll-route="{{ route('user.courses.enroll', $course->id) }}" data-course-id="{{ $course->id }}">Enroll</button>
+                    @if ($enrolled)
+                        <button class="btn btn-primary" disabled>Enrolled</button>
+                    @else
+                        <button class="btn btn-primary enroll-course-btn" data-enroll-route="{{ route('user.courses.enroll', $course->id) }}" data-course-id="{{ $course->id }}">Enroll</button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -32,12 +64,24 @@
         $.ajax({
             url: enrollRoute,
             type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
             beforeSend: function () {
                 event.target.textContent = 'Enrolling...';
             },
             success: function (res) {
-                event.target.textContent = 'Enrolled';
-                event.target.disabled = true;
+                if (res.status) {
+                    event.target.textContent = 'Enrolled';
+                    event.target.disabled = true;
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: res.message,
+                    })
+                    event.target.textContent = 'Enrolled';
+                    event.target.disabled = true;
+                }
             }
         })
     }
