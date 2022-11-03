@@ -18,4 +18,9 @@ class Course extends Model
         'members',
         'img_path',
     ];
+
+    public function users()
+    {
+        return $this->hasManyThrough(User::class, UserCourse::class);
+    }
 }

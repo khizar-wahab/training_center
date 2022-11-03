@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Barcode::class, 'user_id');
     }
+
+    public function courses()
+    {
+        return $this->hasManyThrough(Course::class, UserCourse::class);
+    }
 }
