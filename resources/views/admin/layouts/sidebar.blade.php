@@ -45,7 +45,7 @@
     </li><!-- End Profile Page Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed sidebar-item" href="users-profile.html">
+      <a class="nav-link collapsed sidebar-item" href="{{ route('admin.logout') }}">
         <i class="bi bi-person"></i>
         <span>Logout</span>
       </a>
