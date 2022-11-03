@@ -53,6 +53,10 @@ class CoursesController extends Controller
             'user_id' => $ticket->id
         ]);
 
+        $tickets = [];
+        $tickets[] = $ticket;
+        Mail::to(Auth::user())->send(new CourseEnrolled($tickets));
+
         return ['status' => true, 'message' => 'You have successfully enrolled the course'];
     }
 
