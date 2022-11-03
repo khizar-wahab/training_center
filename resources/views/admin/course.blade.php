@@ -30,12 +30,13 @@ Admin Courses
                     </div>
                 @endif
             </div>
+
         </div>
 
         <div class="container bg-white px-4 pt-1 pb-3 mt-2 border">
             <h1 class="text-secondary text-center mt-2">Courses</h1>
 
-            <div class="container">
+            {{-- <div class="container">
 
                 <div class="row height d-flex justify-content-center align-items-center">
 
@@ -52,9 +53,9 @@ Admin Courses
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
 
-            <table class="table mt-5">
+            <table class="table mt-3">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Id</th>
@@ -114,8 +115,8 @@ Admin Courses
                         <button class="btn btn-primary rounded d-flex align-items-center admin-add-items">Add Course</button>
                     </a>
                 </div>
+                @endif
             </div>
-            @endif
 
     </div>
 </div>

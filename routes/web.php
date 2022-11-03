@@ -11,6 +11,7 @@ use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
 use App\Http\Controllers\User\Auth\ForgotPasswordController as UserForgotPasswordController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,12 +44,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //Admin Dashboard
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        // Admin profile
         Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile');
         Route::post('/profile/update', [AdminProfileController::class, 'update_profile'])->name('profile.update');
     });
 });
 // Admin Course Crud
 Route::resource('adminCourse', AdminCourseController::class)->middleware(['auth:admin']);
+// Admin User Crud
+Route::resource('adminUser', AdminUserController::class)->middleware(['auth:admin']);
 
 
 /*
