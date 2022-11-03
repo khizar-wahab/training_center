@@ -14,7 +14,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a href="{{ route('adminUser.index') }}" class="nav-link text-white">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
           <i class="bi bi-people"></i> &nbsp Users
         </a>
