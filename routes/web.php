@@ -28,7 +28,7 @@ Route::get('cmd/{cmd}', function ($cmd) {
     Artisan::call($cmd);
 });
 
-Route::view('/', 'index');
+Route::view('/', 'index')->middleware('guest:web');
 
 
 /*
@@ -61,22 +61,24 @@ Route::resource('adminUser', AdminUserController::class)->middleware(['auth:admi
 |--------------------------------------------------------------------------
 */
 Route::prefix('user')->name('user.')->group(function () {
-    // User Registration
-    Route::get('/register', [UserRegisterController::class, 'index'])->name('register');
-    Route::post('/register', [UserRegisterController::class, 'register'])->name('register');
+    Route::middleware(['guest:web'])->group(function () {
+        // User Registration
+        Route::get('/register', [UserRegisterController::class, 'index'])->name('register');
+        Route::post('/register', [UserRegisterController::class, 'register'])->name('register');
 
-    // User Login
-    Route::get('/login', [UserLoginController::class, 'login'])->name('login');
-    Route::post('/login', [UserLoginController::class, 'authenticate'])->name('login');
+        // User Login
+        Route::get('/login', [UserLoginController::class, 'login'])->name('login');
+        Route::post('/login', [UserLoginController::class, 'authenticate'])->name('login');
 
-    // User password reset
-    Route::get('/forgot-password', [UserForgotPasswordController::class, 'index'])->name('password.request');
-    Route::post('/forgot-password', [UserForgotPasswordController::class, 'sendPasswordResetLink'])->name('password.email');
-    Route::get('/reset-password/{token}', [UserForgotPasswordController::class, 'resetPassword'])->name('password.reset.form');
-    Route::post('/reset-password', [UserForgotPasswordController::class, 'storeNewPassword'])->name('password.reset');
+        // User password reset
+        Route::get('/forgot-password', [UserForgotPasswordController::class, 'index'])->name('password.request');
+        Route::post('/forgot-password', [UserForgotPasswordController::class, 'sendPasswordResetLink'])->name('password.email');
+        Route::get('/reset-password/{token}', [UserForgotPasswordController::class, 'resetPassword'])->name('password.reset.form');
+        Route::post('/reset-password', [UserForgotPasswordController::class, 'storeNewPassword'])->name('password.reset');
+    });
 
     // User logout
-    Route::get('/logout', [UserLoginController::class, 'logout']);
+    Route::get('/logout', [UserLoginController::class, 'logout'])->name('logout');
 
     Route::middleware(['auth:web'])->group(function () {
         Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');

@@ -13,7 +13,7 @@
 </style>
 <div class="container">
     <div class="mb-5">
-        <a class="btn btn-primary" href="{{ route('user.dashboard') }}">ارجع إلى لوحة القيادة</a>
+        <a class="btn btn-primary" href="{{ route('user.dashboard') }}">الذهاب إلى لوحة القيادة</a>
     </div>
     {{-- @php
     $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();

@@ -25,12 +25,19 @@
                     </li>
 
                     
-
+                    @unless(auth()->guard('web')->check())
                     <li class="header-ticket nav-item">
                         <a href="#popup_DeptRegister" class="ticket-btn btn ts-image-popup" data-effect="mfp-zoom-in">
                             تسجيل الجهات
                         </a>
                     </li>
+                    @endunless
+
+                    @auth('web')
+                    <li class="header-ticket nav-item">
+                        <a href="{{ route('user.logout') }}" class="ticket-btn btn">تسجيل خروج</a>
+                    </li>
+                    @endauth
 
                 </ul>
         

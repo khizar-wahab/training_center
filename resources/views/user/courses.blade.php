@@ -2,9 +2,13 @@
 
 @section('content')
 <div class="container py-4">
+    <div class="mb-5">
+        <a class="btn btn-primary" href="{{ route('user.dashboard') }}">الذهاب إلى لوحة القيادة</a>
+        <a class="btn btn-primary" href="{{ route('user.barcode') }}">مشاهدة ملف Qrcode</a>
+    </div>
     <form action="{{ route('user.courses.enroll.multiple') }}" method="post" id="enrollMultipleForm" class="mb-4">
         @csrf
-        <button type="submit" id="enrollSelected" class="btn btn-primary">Enroll in Selected Courses</button>
+        <button type="submit" id="enrollSelected" class="btn btn-primary">التسجيل في الدورات المختارة</button>
     </form>
     @if ($message = session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
