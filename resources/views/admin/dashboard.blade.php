@@ -20,7 +20,7 @@ Admin dashboard
 @push('scripts')
     
     <script>
-        $(".nav-link:eq(0)").addClass('active');
+        $(".sidebar-item:eq(0)").removeClass('collapsed');
     </script>
 
 @endpush

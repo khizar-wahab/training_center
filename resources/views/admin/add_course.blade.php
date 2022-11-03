@@ -12,115 +12,96 @@ Admin Add Course
         @include('admin.layouts.sidebar')
     </div>
     {{-- main content --}}
-    <div class="col-10">
+    <div class="col-xl-10 col-sm-12 mt-5">
         
-        <div class="row">
-            <div class="col-6">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="{{ route('adminCourse.index') }}">Courses</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Add Course</li>
-                    </ol>
-                  </nav>
-            </div>
-            <div class="col-6 d-flex justify-content-end">
-                @if (session()->has('alert'))
-                    <div class="custom-alert alert bg-success text-light mx-4 mt-2">
-                        <i class="bi bi-check-circle-fill"></i>&nbsp&nbsp{{ session('alert') }}
-                    </div>                    
-                @endif
-            </div>
-        </div>
-        
-        <div class="container">
-            <form action="{{ route('adminCourse.store') }}" method="post" enctype="multipart/form-data" class="bg-white px-5 pt-3 pb-4 mt-5 border">
+        <div class="container mt-5">
+
+            <div class="card-body mt-5 bg-white py-5 px-5">
+                <h3 class="text-center">Add Course</h3>
+  
+                <!-- Vertical Form -->
+                <form class="row g-3" action="{{ route('adminCourse.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <h1 class="text-secondary text-center">Add Course</h1>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Title:</label>
-                    <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <div class="col-12">
+                    <label for="inputNanme4" class="form-label">Title</label>
+                    <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="inputNanme4">
                     <span class="text-danger">
                         @error('title')
                             {{ $message }}
                         @enderror
                     </span>
                   </div>
-                  <div class="row">
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Day:</label>
-                            <input type="text" name="day" value="{{ old('day') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <span class="text-danger">
-                                @error('day')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                          </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Date:</label>
-                            <input type="date" name="date" value="{{ old('date') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <span class="text-danger">
-                                @error('date')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                          </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Time:</label>
-                            <input type="time" name="time" value="{{ old('time') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <span class="text-danger">
-                                @error('time')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                          </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Gender:</label>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input rounded-circle" type="radio" name="gender" value="Male" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                          Male
-                                        </label>
-                                      </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input rounded-circle" type="radio" name="gender" value="Female" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                          Female
-                                        </label>
-                                      </div>
-                                </div>
-                            </div>
-                            <span class="text-danger">
-                                @error('gender')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                          </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Training provider:</label>
-                            <input type="text" name="trainingProvider" value="{{ old('trainingProvider') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <span class="text-danger">
-                                @error('trainingProvider')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                          </div>
-                    </div>
+                  <div class="col-12">
+                    <label for="inputEmail4" class="form-label">Day</label>
+                    <input type="text" name="day" value="{{ old('day') }}" class="form-control" id="inputEmail4">
+                    <span class="text-danger">
+                        @error('day')
+                            {{ $message }}
+                        @enderror
+                    </span>
                   </div>
-                  <button class="btn btn-primary rounded">Submit</button>
-            </form>
+                  <div class="col-12">
+                    <label for="inputEmail4" class="form-label">Date</label>
+                    <input type="date" name="date" value="{{ old('date') }}" class="form-control" id="inputEmail4">
+                    <span class="text-danger">
+                        @error('date')
+                            {{ $message }}
+                        @enderror
+                    </span>
+                  </div>
+                  <div class="col-12">
+                    <label for="inputPassword4" class="form-label">Time</label>
+                    <input type="time" name="time" value="{{ old('time') }}" class="form-control" id="inputPassword4">
+                    <span class="text-danger">
+                        @error('time')
+                            {{ $message }}
+                        @enderror
+                    </span>
+                  </div>
+                  <div class="col-6">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Gender:</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input rounded-circle" type="radio" name="gender" value="Male" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Male
+                                    </label>
+                                  </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input rounded-circle" type="radio" name="gender" value="Female" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      Female
+                                    </label>
+                                  </div>
+                            </div>
+                        </div>
+                        <span class="text-danger">
+                            @error('gender')
+                                {{ $message }}
+                            @enderror
+                        </span>
+                      </div>
+                </div>
+                <div class="col-12">
+                    <label for="inputPassword4" class="form-label">Training provider:</label>
+                    <input type="text" name="trainingProvider" value="{{ old('trainingProvider') }}" class="form-control" id="inputPassword4">
+                    <span class="text-danger">
+                        @error('trainingProvider')
+                            {{ $message }}
+                        @enderror
+                    </span>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form><!-- Vertical Form -->
+  
+              </div>
+
         </div>
     </div>
 </div>
@@ -128,7 +109,7 @@ Admin Add Course
 @push('scripts')
     
     <script>
-        $(".nav-link:eq(2)").addClass('active');
+        $(".sidebar-item:eq(2)").removeClass('collapsed');
         var elem = $('.custom-alert:eq(0)');
         console.log(elem.html());
         if(elem.html() != ""){

@@ -19,7 +19,7 @@ class CourseController extends Controller
         if($request->search != ""){
             $courses = Course::where('title', "LIKE", "%$request->search%")->paginate(10);
         }else{
-            $courses = Course::paginate(8);
+            $courses = Course::paginate(10);
         }
         return view("admin.course", compact('courses'));
     }
@@ -150,7 +150,7 @@ class CourseController extends Controller
         $course = Course::find($id);
         if($course){
             $course->delete();
-            return redirect()->back()->with(session()->flash('alert', 'Course deleted'));
+            return redirect('/adminCourse')->with(session()->flash('alert', 'Course deleted'));
         }else{
             return redirect()->back();
         }
