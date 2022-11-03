@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a class="ts-scroll" href="#Contact">للتواصل</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="  " href="{{ route('register-company') }}">تسجيل الشركة</a>
+                    </li>
 
                     
 

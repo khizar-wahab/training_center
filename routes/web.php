@@ -9,6 +9,7 @@ use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
 use App\Http\Controllers\User\Auth\ForgotPasswordController as UserForgotPasswordController;
 
@@ -82,3 +83,6 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/courses/{course}/enroll', [UserCoursesController::class, 'enroll'])->name('courses.enroll');
     });
 });
+Route::get('/company',[CompanyController::class,'index'])->name('register-company');
+Route::post('/company/register',[CompanyController::class,'register'])->name('company.register');
+Route::get('/company/profile',[CompanyController::class,'profile'])->name('company.profile');
