@@ -7,10 +7,11 @@
     </head>
     <body>
         <div style="padding: 16px;">
+            <h1 style="margin-bottom: 32px;">لقد سجلت في الدورات التالية:</h1>
             @foreach ($tickets as $ticket)
                 <div style="padding: 16px; background-color: #eee; margin-bottom: 32px; border: 1px solid #aaa;">
-                    <h3><b>Course title: </b>{{ $ticket->course->title }}</h3>
-                    <p><b>Training Provider: </b>{{ $ticket->course->traiPro }}</p>
+                    <h3><b>عنوان الدورة: </b>{{ $ticket->course->title }}</h3>
+                    <p><b>مزود التدريب: </b>{{ $ticket->course->traiPro }}</p>
                 </div>
             @endforeach
         </div>

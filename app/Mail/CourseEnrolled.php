@@ -30,6 +30,6 @@ class CourseEnrolled extends Mailable
      */
     public function build()
     {
-        return $this->view('user.mails.course-enrolled');
+        return $this->subject('Course Enrolled')->view('user.mails.course-enrolled');
     }
 }
