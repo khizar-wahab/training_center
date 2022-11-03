@@ -21,13 +21,15 @@
                     <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
                         <div class="row g-0 about-bg rounded overflow-hidden">
                             <div class="col-9 text-start">
-                                <img class="img-fluid img-thumbnail w-100" src="https://picsum.photos/700">
+                                <img class="img-fluid img-thumbnail w-100" src="{{ isset($company->image)?asset('storage/'.$company->image) : 'https://picsum.photos/700'}}">
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
-                        <h1 class="mb-4">We Help To Get The Best Job And Find A Talent</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <h1 class="mb-4">{{ $company->name }}</h1>
+                        <p class="mb-4">
+                            {{ $company->description }}
+                        </p>
                         <p>Tempor erat elitr rebum at clita</p>
 
                     </div>
