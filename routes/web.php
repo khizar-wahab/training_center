@@ -25,6 +25,8 @@ use App\Http\Controllers\User\Auth\ForgotPasswordController as UserForgotPasswor
 
 Route::get('cmd/{cmd}', function ($cmd) {
     Artisan::call($cmd);
+    echo "<pre style='color:white;background-color:black;padding:20px;'>";
+    return Artisan::output();
 });
 
 Route::view('/', 'index');
