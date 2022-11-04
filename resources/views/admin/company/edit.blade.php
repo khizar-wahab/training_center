@@ -20,7 +20,7 @@ Admin | Edit Company
       </div>
       <div class="card-body mt-5 bg-white py-5 px-5">
         <!-- Vertical Form -->
-        <form class="row g-3" action="{{ route('admin-companies.update',$company->id) }}" method="post"
+        <form class="row g-3" action="{{ route('admin.admin-companies.update',$company->id) }}" method="post"
           enctype="multipart/form-data">
           @csrf
           <div class="row">
