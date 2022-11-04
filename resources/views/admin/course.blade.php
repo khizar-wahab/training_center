@@ -55,7 +55,7 @@ Admin Courses
                                             Action
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"
+                                            <li><a class="dropdown-item admin-table-links"
                                                     href="{{ route('adminCourse.edit', $course->id) }}">Edit</a></li>
                                             <li>
                                                 <form action="{{ route('adminCourse.destroy', $course->id) }}"
@@ -104,14 +104,20 @@ Admin Courses
         @push('scripts')
 
         <script>
+
             $(".sidebar-item:eq(2)").removeClass('collapsed');
-        var elem = $('.custom-alert:eq(0)');
-        console.log(elem.html());
-        if(elem.html() != ""){
-            setTimeout(() => {
-                elem.fadeOut("slow");
-            }, 1800);
-        }
+                var elem = $('.custom-alert:eq(0)');
+                console.log(elem.html());
+                if(elem.html() != ""){
+                    setTimeout(() => {
+                        elem.fadeOut("slow");
+                    }, 1800);
+            }
+
+            document.getElementsByClassName("admin-table-links").addEventListener("click", function(){
+                '{{ session()->put("red", url()->current()) }}';
+            });
+
         </script>
 
         @endpush

@@ -49,7 +49,7 @@ Admin Users
                                         Action
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
+                                        <li><a class="dropdown-item admin-table-links"
                                                 href="{{ route('adminUser.edit', $user->id) }}">Edit</a></li>
                                         <li>
                                             <form action="{{ route('adminUser.destroy', $user->id) }}" method="POST">
@@ -99,6 +99,10 @@ Admin Users
                 elem.fadeOut("slow");
             }, 1700);
         }
+
+    document.getElementsByClassName("admin-table-links").addEventListener("click", function(){
+        '{{ session()->put("red", url()->current()) }}';
+    });
 </script>
 
 @endpush
