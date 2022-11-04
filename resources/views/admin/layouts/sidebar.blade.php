@@ -3,7 +3,7 @@
  <header id="header" class="header fixed-top d-flex align-items-center justify-content-between">
 
   <div class="d-flex align-items-center justify-content-between">
-    <a href="index.html" class="logo d-flex align-items-center">
+    <a href="{{ url('/admin/dashboard') }}" class="logo d-flex align-items-center">
       <img src="assets/img/logo.png" alt="">
       <span class="d-none d-lg-block">Admin Panel</span>
     </a>
@@ -58,7 +58,7 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed sidebar-item" href="{{ route('adminTicket.index') }}">
-        <i class="bi bi-book"></i><span>Tickets</span>
+        <i class="bi bi-cash"></i><span>Tickets</span>
       </a>
     </li><!-- End Components Nav -->
 

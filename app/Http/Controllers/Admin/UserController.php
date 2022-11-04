@@ -93,7 +93,7 @@ class UserController extends Controller
                     'phone' => $request->phone,
                 ]);
 
-                return redirect()->back()->with(session()->flash('alert', 'User Updated.'));
+                return redirect(session('red'))->with(session()->flash('alert', 'User Updated.'));
             }else{
                 $request->validate([
                     'name' => 'required',
@@ -110,7 +110,7 @@ class UserController extends Controller
                     'password' => Hash::make($request->password),
                 ]);
 
-                return redirect()->back()->with(session()->flash('alert', 'User Updated.'));
+                return redirect(session('red'))->with(session()->flash('alert', 'User Updated.'));
             }
         }else{
             return redirect()->back();
