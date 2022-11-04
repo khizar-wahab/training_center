@@ -1,10 +1,22 @@
 @extends('admin.layouts.app')
 
 @push('title')
-Admin Edit Course
+Admin dashboard
 @endpush
 
 @section('content')
+
+@php
+    
+    use App\Models\User;
+    use App\Models\Course;
+    use App\Models\Ticket;
+
+    $users = User::count();
+    $courses = Course::count();
+    $tickets = Ticket::count();
+
+@endphp
 
 <div class="row">
     {{-- sidebar --}}
@@ -12,148 +24,97 @@ Admin Edit Course
         @include('admin.layouts.sidebar')
     </div>
     {{-- main content --}}
-    <div class="col-10">
+    <div class="col-xl-10 col-sm-12 mt-5">
         
-        <div class="row">
-            <div class="col-6">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="{{ route('adminCourse.index') }}">Courses</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Edit Course</li>
-                    </ol>
-                  </nav>
-            </div>
-            <div class="col-6 d-flex justify-content-end">
-                @if (session()->has('alert'))
-                    <div class="custom-alert alert bg-success text-light mx-4 mt-2">
-                        <i class="bi bi-check-circle-fill"></i>&nbsp&nbsp{{ session('alert') }}
-                    </div>                    
-                @endif
-            </div>
-        </div>
-        
-        <div class="container">
-            <form action="{{ route('adminCourse.update', $id) }}" method="post" enctype="multipart/form-data" class="bg-white px-5 pt-3 pb-4 mt-5 border">
-                @csrf
-                {{ method_field("PUT") }}
-                <h1 class="text-secondary text-center">Edit Course</h1>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Title:</label>
-                    <input type="text" name="title" @if(isset($course)) value="{{ $course->title }}" @endif value="{{ old('title') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <span class="text-danger">
-                        @error('title')
-                            {{ $message }}
-                        @enderror
-                    </span>
-                  </div>
-                  <div class="row">
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Day:</label>
-                            <input type="text" name="day" @if(isset($course)) value="{{ $course->day }}" @endif value="{{ old('day') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <span class="text-danger">
-                                @error('day')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                          </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Date:</label>
-                            <input type="date" name="date" @if(isset($course)) value="{{ $course->date }}" @endif value="{{ old('date') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <span class="text-danger">
-                                @error('date')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                          </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Time:</label>
-                            <input type="time" name="time" @if(isset($course)) value="{{ $course->time }}" @endif value="{{ old('time') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <span class="text-danger">
-                                @error('time')
-                                    {{ $message }}
-                                @enderror
-                            </span>
-                          </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Gender:</label>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input rounded-circle" @if(isset($course) && $course->gender == "Male") checked @endif type="radio" name="gender" value="Male" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                          Male
-                                        </label>
-                                      </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input rounded-circle" @if(isset($course) && $course->gender == "Female") checked @endif type="radio" name="gender" value="Female" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                          Female
-                                        </label>
-                                      </div>
-                                </div>
+        <div class="container mt-4">
+
+            <div class="pagetitle">
+                <h1>Dashboard</h1>
+                <nav>
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                  </ol>
+                </nav>
+              </div>
+
+              <div class="dashboard">
+
+                <div class="row">
+
+                    <div class="col-xxl-4 col-md-6">
+
+                        <div class="card info-card sales-card">
+                          <div class="card-body">
+                            <h5 class="card-title">Total <span>| Users</span></h5>
+                            <div class="d-flex align-items-center">
+                              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bx bx-user"></i>
+                              </div>
+                              <div class="ps-3">
+                                <h6>{{ $users }}</h6>
+                              </div>
                             </div>
-                            <span class="text-danger">
-                                @error('gender')
-                                    {{ $message }}
-                                @enderror
-                            </span>
                           </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Training provider:</label>
-                            <input type="text" name="trainingProvider" @if(isset($course)) value="{{ $course->traiPro }}" @endif value="{{ old('trainingProvider') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <span class="text-danger">
-                                @error('trainingProvider')
-                                    {{ $message }}
-                                @enderror
-                            </span>
+                        </div>
+
+                      </div>
+
+                    <div class="col-xxl-4 col-md-6">
+
+                        <div class="card info-card sales-card">
+                          <div class="card-body">
+                            <h5 class="card-title">Total <span>| Courses</span></h5>
+                            <div class="d-flex align-items-center">
+                              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bx bx-book"></i>
+                              </div>
+                              <div class="ps-3">
+                                <h6>145</h6>
+                              </div>
+                            </div>
                           </div>
-                    </div>
-                  </div>
-                  <button class="btn btn-primary rounded">Submit</button>
-            </form>
+          
+                        </div>
+                        
+                      </div>
+                      
+                    <div class="col-xxl-4 col-md-6">
+
+                        <div class="card info-card sales-card">
+                          <div class="card-body">
+                            <h5 class="card-title">Total <span>| Tickets</span></h5>
+                            <div class="d-flex align-items-center">
+                              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bx bx-purchase-tag"></i>
+                              </div>
+                              <div class="ps-3">
+                                <h6>145</h6>
+                              </div>
+                            </div>
+                          </div>
+          
+                        </div>
+
+                      </div>
+
+                </div>
+
+              </div>
+
         </div>
+
     </div>
 </div>
 
 @push('scripts')
     
     <script>
-        $(".nav-link:eq(2)").addClass('active');
-        var elem = $('.custom-alert:eq(0)');
-        console.log(elem.html());
-        if(elem.html() != ""){
-            setTimeout(() => {
-                elem.fadeOut("slow");
-            }, 1800);
-        }
-
-        $("#edit-course-desc").val("{{ $course->desc }}");
+        $(".sidebar-item:eq(0)").removeClass('collapsed');
     </script>
 
 @endpush
-{{-- jquery multiselect --}}
-{{-- @push('scripts')
-    
-    <script>
-        setTimeout(function() {
-        new SlimSelect({
-          select: '#select'
-            })
-        }, 300)
-        $(".ss-disabled:eq(0)").html("Select members");
-    </script>
-
-@endpush --}}
 
 @endsection
+
+<span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>

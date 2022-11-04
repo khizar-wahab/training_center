@@ -26,7 +26,7 @@ Admin Users
             <div class="card mt-5 pt-4 pb-4">
 
                 <div class="card-body">
-                  <h2 class="text-center mb-3">Tickets</h2>
+                    <h5 class="card-title">Tickets</h5>
     
                   <!-- Default Table -->
                   <div class="table-responsive-md">

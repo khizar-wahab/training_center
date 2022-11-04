@@ -87,4 +87,3 @@ Admin Courses | {{ $course->title }} Users
 @endpush
 
 @endsection
-{{-- <a href="{{ route('adminCourse.create') }}"><button class="btn btn-primary">Add Course</button></a> --}}
