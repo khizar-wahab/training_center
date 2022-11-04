@@ -122,7 +122,7 @@
 
                                     }else if(type == '2'){
                                         // for course details
-                                        window.location.href = '/course-detail/' + lastResult;
+                                        window.location.href = '/ticket-detail/' + lastResult;
                                     }
 
                                 }

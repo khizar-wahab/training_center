@@ -45,6 +45,7 @@ Route::view('/', 'index')->middleware('guest:web');
 
 Route::get('/details/{code}',[FrontController::class, 'details']);
 Route::get('/jobs/{code}',[FrontController::class, 'jobs']);
+Route::get('/ticket-detail/{code}', [FrontController::class, 'ticketDetails']);
 
 /*
 |--------------------------------------------------------------------------
