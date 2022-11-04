@@ -7,3 +7,9 @@ body {
 .admin-table-links:hover {
     color: #4154f1;
 }
+.admin-table-links-2 {
+    color: rgb(119, 119, 119);
+}
+.admin-table-links-2:hover {
+    color: #4154f1;
+}
