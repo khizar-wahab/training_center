@@ -128,7 +128,7 @@ class UserController extends Controller
         $user = User::find($id);
         if($user){
             $user->delete();
-            return redirect()->back()->with(session()->flash('alert', 'User Deleted.'));
+            return redirect('/adminUser')->with(session()->flash('alert', 'User Deleted.'));
         }else{
             return redirect()->back();
         }

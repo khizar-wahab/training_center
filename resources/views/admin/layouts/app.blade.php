@@ -8,11 +8,8 @@
         @stack('title')
     </title>
 
-
-    <link rel="stylesheet" href="{{ asset('assets/css/loginform/style.css') }}">
     {{-- custom --}}
     <link rel="stylesheet" href="{{ asset('assets/css/admin/style.css') }}">
-
    
     <link href="{{ asset('admin/assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('admin/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
