@@ -137,7 +137,10 @@ Admin Users
             }, 1700);
         }
 
-   
+    document.getElementsByClassName("admin-table-links").addEventListener("click", function(){
+        '{{ session()->put("red", url()->current()) }}';
+    });
+
 </script>
 
 @endpush
