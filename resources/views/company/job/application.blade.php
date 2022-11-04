@@ -37,37 +37,61 @@
                 <form action="{{ route('company.job.store') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label title="Job title">مسمى وظيفي</label>
-                        <input type="text" class="form-control" name="title" required>
-                        @error('title')
+                        <label title="Name">اسم</label>
+                        <input type="text" class="form-control" name="name" required>
+                        @error('name')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                       <div class="form-group">
-                        <label>هاتف</label>
-                        <select class="form-control" name="type" id="jobtype">
-                            <option value="وقت كامل">وقت كامل</option>
-                            <option value="دوام جزئى">دوام جزئى</option>
-                            <option value="عقد">عقد</option>
-                            <option value="التدريب الداخلي">التدريب الداخلي</option>
+                        <label title="Gender">جنس</label>
+                        <select class="form-control" name="gender" id="gender">
+                            <option >-- جنس --</option>
+                            <option value="الذكر">الذكر</option>
+                            <option value="أنثى">أنثى</option>=
                         </select>
-                        @error('type')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label title="Description">وصف</label>
-                        <textarea class="form-control" name="description"></textarea>
-                        @error('email')
+                        @error('gender')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                   
                     <div class="form-group">
-                        <label>اخر موعد</label>
-                        <input type="date" class="form-control" name="last_date">
-                        @error('last_date')
+                        <label title="Education">تعليم</label>
+                        <input type="text" class="form-control" name="education">
+                        @error('education')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                                      
+                    <div class="form-group">
+                        <label title="Languages">اللغات</label>
+                        <input type="text" class="form-control" name="languages">
+                        @error('languages')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                  
+                    <div class="form-group">
+                        <label title="Interesting job">وظيفة مثيرة للاهتمام</label>
+                        <input type="text" class="form-control" name="interesting">
+                        @error('interesting')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group d-flex">
+                        <label title="working">هل تعمل الان ? </label>
+                        <input type="checkbox" class="custom-control" name="work_status">
+                        @error('interesting')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group d-flex">
+                        <label title="cv">تحميل السيرة الذاتية</label>
+                        <input type="file" class="custom-control" name="cv">
+                        @error('cv')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
