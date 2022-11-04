@@ -42,7 +42,11 @@ Admin dashboard
                                 <i class="bx bx-user"></i>
                               </div>
                               <div class="ps-3">
-                                <h6>{{ $users }}</h6>
+                                <h6>@if ($users < 10)
+                                  0{{ $users }}
+                                @else
+                                    {{ $users }}
+                                @endif</h6>
                                 <a href="{{ route('adminUser.index') }}" class="admin-table-links-2">
                                     <span class="small pt-2 ps-1 fw-bold">Details</span>
                                 </a>
