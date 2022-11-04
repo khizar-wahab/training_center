@@ -42,7 +42,11 @@ Admin dashboard
                                 <i class="bx bx-user"></i>
                               </div>
                               <div class="ps-3">
-                                <h6>{{ $users }}</h6>
+                                <h6>@if ($users < 10 && $users !== 0)
+                                    0{{ $users }}
+                                @else
+                                    {{ $users }}
+                                @endif</h6>
                                 <a href="{{ route('adminUser.index') }}" class="admin-table-links-2">
                                     <span class="small pt-2 ps-1 fw-bold">Details</span>
                                 </a>
@@ -63,7 +67,7 @@ Admin dashboard
                                 <i class="bx bx-book"></i>
                               </div>
                               <div class="ps-3">
-                                <h6>@if ($courses < 10)
+                                <h6>@if ($courses < 10 && $courses !== 0)
                                     0{{ $courses }}
                                 @else
                                     {{ $courses }}
@@ -89,7 +93,7 @@ Admin dashboard
                                 <i class="bx bx-purchase-tag"></i>
                               </div>
                               <div class="ps-3">
-                                <h6>@if ($tickets < 10)
+                                <h6>@if ($tickets < 10 && $tickets !== 0)
                                     0{{ $tickets }}
                                 @else
                                     {{ $tickets }}
