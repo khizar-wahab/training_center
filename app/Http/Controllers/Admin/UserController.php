@@ -133,4 +133,9 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+
+    public function tickets(User $user)
+    {
+        return view('admin.user-tickets', compact('user'));
+    }
 }

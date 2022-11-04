@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @push('title')
-Admin Users
+Admin Users | {{ $user->name }} Tickets
 @endpush
 
 @section('content')
@@ -18,27 +18,27 @@ Admin Users
 
             <div class="card mt-5 pt-4 pb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Users</h5>
+                    <h5 class="card-title">{{$user->name}}'s tickets</h5>
 
                   <!-- Default Table -->
                   <table class="table table-responsive-md">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
+                        <th scope="col">Course Title</th>
+                        <th scope="col">Course Training Provider</th>
+                        <th scope="col">Enroll Date</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                       @foreach ($users as $i => $user)
+                       @foreach ($user->tickets as $i => $ticket)
                            
                        <tr>
                         <th>{{ $i + 1 }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone }}</td>
+                        <td>{{ $ticket->course->title }}</td>
+                        <td>{{ $ticket->course->traiPro }}</td>
+                        <td>{{ \Illuminate\Support\carbon::parse($ticket->created_at)->format('M d Y') }}</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle rounded" type="button"
@@ -46,19 +46,14 @@ Admin Users
                                     Action
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('adminUser.edit', $user->id) }}">Edit</a></li>
                                     <li>
-                                        <form action="{{ route('adminUser.destroy', $user->id) }}" method="POST">
+                                        {{-- <form action="{{ route('adminUser.destroy', $user->id) }}" method="POST">
                                             <input name="_method" type="hidden" value="DELETE">
                                             {{ csrf_field() }}
                                     <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
                                                 style="border: none; background:none;  position: relative; right:6px;">Delete</button></a>
-                                    </li> {{-- delete --}}
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('admin.user.tickets', $user->id) }}">View Tickets</a>
                                     </li>
-                                    </form>
+                                    </form> --}}
                                     </li>
                                 </ul>
                             </div>
@@ -71,17 +66,6 @@ Admin Users
                   <!-- End Default Table Example -->
                 </div>
               </div>
-
-            <div class="row">
-                <div class="col-6">
-                    @if ($users->links() !== "")
-                    {{ $users->links() }}
-                </div>
-                <div class="col-6 d-flex justify-content-end">
-
-                </div>
-                @endif
-            </div>
 
     </div>
 </div>
