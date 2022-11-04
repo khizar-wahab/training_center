@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @push('title')
-Admin | Companies
+Admin | Jobs
 @endpush
 
 @section('content')
@@ -20,11 +20,11 @@ Admin | Companies
         <div class="row">
           <div class="col-lg-10">
             <div class="card-header">
-              <h5 class="card-title">Companies</h5>
+              <h5 class="card-title">Jobs</h5>
             </div>
           </div>
           <div class="col-lg-2">
-            <a href="{{ route('admin-companies.create') }}" class="btn btn-primary">Add Company</a>
+            <a href="{{ route('admin.jobs.create') }}" class="btn btn-primary">Add Jobs</a>
           </div>
           <div class="col-lg-12">
             @if (session()->has('success'))
@@ -57,7 +57,7 @@ Admin | Companies
               </tr>
             </thead>
             <tbody>
-              @foreach ($companies as $company)
+              @foreach ($companies = [] as $company)
               <tr>
                 <th>{{ $company->id }}</th>
                 <td>{{ $company->name }}</td>

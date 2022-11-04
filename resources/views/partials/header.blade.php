@@ -119,6 +119,9 @@
                                         // for course details
                                         window.location.href = '/ticket-detail/' + lastResult;
                                     }
+                                    else {
+                                        alert("Could not scan qrcode");
+                                    }
 
                                 }
                             }

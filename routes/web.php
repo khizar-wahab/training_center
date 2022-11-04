@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\JobsController as AdminJobsController;
 use App\Http\Controllers\User\CoursesController as UserCoursesController;
 use App\Http\Controllers\User\TicketsController as UserTicketsController;
 use App\Http\Controllers\User\JobsController as UserJobsController;
@@ -76,6 +77,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Courses
         Route::get('/courses/{course}/users', [AdminCourseController::class, 'courseUsers'])->name('courses.users');
+
+        // Jobs
+        Route::resource('/jobs', AdminJobsController::class);
     });
 });
 // Admin Course Crud
