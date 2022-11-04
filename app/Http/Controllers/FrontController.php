@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use App\Models\Barcode;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,11 @@ class FrontController extends Controller
         return view('jobs', ['company'=> $company]);
         // return view('jobs');
         
+    }
+
+    public function ticketDetails($code) {
+        $ticket = Ticket::where('qrcode_number', $code)->first();
+        return view('ticket-detail', compact('ticket'));
     }
 
 }

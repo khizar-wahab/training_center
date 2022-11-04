@@ -38,7 +38,7 @@ class CoursesController extends Controller
             'course_id' => $course->id
         ]);
 
-        $qrcode = '3' . time();
+        $qrcode = '2' . time();
 
         // Create Ticket
         $ticket = Ticket::create([
@@ -84,7 +84,7 @@ class CoursesController extends Controller
                 'course_id' => $id
             ]);
 
-            $qrcode = '3' . time();
+            $qrcode = '2' . time();
 
             // Create Ticket
             $ticket = Ticket::create([
