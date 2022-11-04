@@ -15,4 +15,13 @@ class FrontController extends Controller
             return redirect('/');
         }
     }
+
+    public function jobs($code){
+        // $company = Barcode::where('number', $code)->first()->user->company()->with('jobs')->get() ?? false;
+        $company = Barcode::where('number', $code)->first()->user->company()->first() ?? false;
+        return view('jobs', ['company'=> $company]);
+        // return view('jobs');
+        
+    }
+
 }

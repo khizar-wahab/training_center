@@ -7,57 +7,77 @@ Admin login
 @section('content')
 
 {{-- login form --}}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6 text-center mb-5 mt-4">
+ <main>
+    <div class="container">
 
-        </div>
-    </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-7 col-lg-5">
-            <div class="login-wrap p-4 p-md-5">
-                <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="bi bi-person" style="font-size: 45px;"></span>
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+            {{-- credentials error --}}
+            @if (session()->has('error'))
+                <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <h3 class="text-center mb-4">Admin
-                {{-- credentials error --}}
-                @if (session()->has('error'))
-                    <h6 class="text-center text-danger">{{ session('error') }}</h6>
-                @endif
-                {{--  --}}
-                </h3>
-                <form action="{{ route('admin.login') }}" method="post" class="login-form">
+            @endif
+            {{--  --}}
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <div class="d-flex justify-content-center py-4">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                  <img src="{{ asset('assets/images/logos/MFTC-logo.png') }}" alt="" style="max-height: 90px;">
+                  <span class="d-none d-lg-block">Admin Panel</span>
+                </a>
+              </div><!-- End Logo -->
+              <div class="card mb-3">
+
+                <div class="card-body">
+
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                    <p class="text-center small">Enter your email address & password to login</p>
+                  </div>
+
+                  <form action="{{ route('admin.login') }}" method="post" class="row g-3 needs-validation" novalidate>
                     @csrf
-                    <div class="form-group">
-                        <input type="text" class="form-control rounded-left" name="email" placeholder="Email" @if(session()->has('ad_log_email')) value="{{ session('ad_log_email') }}" @else value="{{ old('email') }}" @endif>
-                    </div>
-                    <span class="text-danger ad-login-err">
+                    <div class="col-12">
+                      <label for="yourEmail" class="form-label">Email</label>
+                      <div class="input-group has-validation">
+                        <input type="text" name="email" class="form-control" id="yourEmail" @if(session()->has('ad_log_email')) value="{{ session('ad_log_email') }}" @else value="{{ old('email') }}" @endif required>
                         @error('email')
-                            {{ $message }}
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
                         @enderror
-                    </span>
-                    <div class="form-group d-flex">
-                        <input type="password" class="form-control rounded-left" name="password" placeholder="Password" value="{{ old('password') }}">
-                    </div>
-                    <span class="text-danger ad-login-err">
-                        @error('password')
-                            {{ $message }}
-                        @enderror
-                    </span>
-                    <div class="form-group">
-                        <button type="submit"
-                            class="form-control btn btn-primary rounded submit px-3">Login</button>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                        <label class="form-check-label text-primary" for="flexCheckChecked">
-                          Remember me!
-                        </label>
                       </div>
-                </form>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="yourPassword" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      @error('password')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                      @enderror
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100" type="submit">Login</button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+
+      </section>
+
     </div>
-</div>
+</main>
 
 @endsection
