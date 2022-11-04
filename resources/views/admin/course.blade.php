@@ -48,7 +48,7 @@ Admin Courses
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($courses as $course)
+                            @forelse ($courses as $course)
                             <tr>
                                 <th>{{ $course->id }}</th>
                                 <td>{{ $course->title }}</td>
@@ -82,7 +82,15 @@ Admin Courses
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+
+                            @empty
+
+                            <tr>
+                                <td class="text-center" colspan="8">No Courses found</td>
+                            </tr>
+
+                            @endforelse
+
                         </tbody>
                     </table>
 

@@ -42,7 +42,7 @@ Admin Users
                       </tr>
                     </thead>
                     <tbody>
-                       @foreach ($tickets as $ticket)
+                       @forelse ($tickets as $ticket)
                            
                        <tr>
                         <th>{{ $ticket->id }}</th>
@@ -51,11 +51,18 @@ Admin Users
                             @php
 
                                 $user = User::find($ticket->user_id);
+                                if($user){
+                                    $user_id = $user->id;
+                                    $user_name = $user->name;
+                                }else{
+                                    $user_id = '';
+                                    $user_name = '';
+                                }
 
                             @endphp
 
-                            <a href="{{ route('adminUser.edit', $user->id) }}" class="admin-table-links">
-                                {{ $user->name ?? '' }}
+                            <a href="{{ route('adminUser.edit', $user_id ?? '') }}" class="admin-table-links">
+                                {{ $user_name ?? '' }}
                             </a>
 
                         </td>
@@ -64,11 +71,18 @@ Admin Users
                             @php
 
                                 $course = Course::find($ticket->course_id);
+                                if($course){
+                                    $course_id = $course->id;
+                                    $course_name = $course->name;
+                                }else{
+                                    $course_id = '';
+                                    $course_name = '';
+                                }
 
                             @endphp
 
-                            <a href="{{ route('adminCourse.edit', $course->id) }}" class="admin-table-links">
-                                {{ $course->title ?? '' }}
+                            <a href="{{ route('adminCourse.edit', $course_id) }}" class="admin-table-links">
+                                {{ $course_name ?? '' }}
                             </a>
 
                         </td>
@@ -102,7 +116,13 @@ Admin Users
                         </td>
                     </tr>
 
-                       @endforeach
+                    @empty
+
+                    <tr>
+                        <td class="text-center" colspan="8">No Tickets found</td>
+                    </tr>
+
+                    @endforelse
                     </tbody>
                   </table>
 
@@ -128,7 +148,7 @@ Admin Users
 @push('scripts')
 
 <script>
-    $(".sidebar-item:eq(3)").removeClass('collapsed');
+    $(".sidebar-item:eq(4)").removeClass('collapsed');
         var elem = $('.custom-alert:eq(0)');
         console.log(elem.html());
         if(elem.html() != ""){
