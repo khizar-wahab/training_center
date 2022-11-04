@@ -68,6 +68,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Admin profile
         Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile');
         Route::post('/profile/update', [AdminProfileController::class, 'update_profile'])->name('profile.update');
+
+        // Users
+        Route::get('/users/{user}/tickets', [AdminUserController::class, 'tickets'])->name('user.tickets');
+
+        // Courses
+        Route::get('/courses/{course}/users', [AdminCourseController::class, 'courseUsers'])->name('courses.users');
     });
 });
 // Admin Course Crud

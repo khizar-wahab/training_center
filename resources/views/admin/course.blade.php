@@ -18,7 +18,7 @@ Admin Courses
 
             <div class="card mt-5 pt-4 pb-4">
                 <div class="card-body">
-                    <h2 class="text-center mb-3">Courses</h2>
+                    <h5 class="card-title">Courses</h5>
 
                     <!-- Default Table -->
                     <div class="table-responsive-md">
@@ -33,7 +33,6 @@ Admin Courses
                                 <th scope="col">Time</th>
                                 <th scope="col">Gender</th>
                                 <th scope="col">Training Provider</th>
-                                <th scope="col">Members</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -47,7 +46,6 @@ Admin Courses
                                 <td>{{ $course->time }}</td>
                                 <td>{{ $course->gender }}</td>
                                 <td>{{ $course->traiPro }}</td>
-                                <td>{{ $course->members }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle rounded" type="button"
@@ -55,6 +53,9 @@ Admin Courses
                                             Action
                                         </button>
                                         <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item"
+                                                    href="{{ route('admin.courses.users', $course->id) }}">View Enrolled Users</a></li>
+                                            <li>
                                             <li><a class="dropdown-item"
                                                     href="{{ route('adminCourse.edit', $course->id) }}">Edit</a></li>
                                             <li>

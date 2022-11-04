@@ -155,4 +155,9 @@ class CourseController extends Controller
             return redirect()->back();
         }
     }
+
+    public function courseUsers(Course $course)
+    {
+        return view('admin.course-users', compact('course'));
+    }
 }
