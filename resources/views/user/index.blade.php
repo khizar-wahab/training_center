@@ -8,7 +8,7 @@
     </div>
     <div class="d-flex gap-4 p-4 justify-content-center">
         @if(auth()->guard('web')->user()->type==1)
-            <a href="{{ route('user.courses') }}" class="btn btn-primary">أضف وظائف</a>
+            <a href="{{ route('company.job.index') }}" class="btn btn-primary"> وظائف</a>
             <a href="{{ route('company.profile') }}" class="btn btn-primary">ملف الشركة</a>        
         @else
             <a href="{{ route('user.courses') }}" class="btn btn-primary mx-4">التسجيل في الدورات وورش العمل</a>
