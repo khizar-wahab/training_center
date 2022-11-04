@@ -60,8 +60,7 @@ Admin Courses
                                                     method="POST">
                                                     <input name="_method" type="hidden" value="DELETE">
                                                     {{ csrf_field() }}
-                                            <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
-                                                        style="border: none; background:none;  position: relative; right:6px;">Delete</button></a>
+                                            <li><button type="submit" class="dropdown-item">Delete</button>
                                             </li> {{-- delete --}}
                                             </form>
                                             </li>

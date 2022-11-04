@@ -17,6 +17,7 @@ Admin Users
         <div class="container px-4 pt-1 pb-3 mt-5">
 
             <div class="card mt-5 pt-4 pb-4">
+
                 <div class="card-body">
                   <h2 class="text-center">Users</h2>
     
@@ -52,8 +53,7 @@ Admin Users
                                         <form action="{{ route('adminUser.destroy', $user->id) }}" method="POST">
                                             <input name="_method" type="hidden" value="DELETE">
                                             {{ csrf_field() }}
-                                    <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
-                                                style="border: none; background:none;  position: relative; right:6px;">Delete</button></a>
+                                    <li><button type="submit" class="dropdown-item">Delete</button>
                                     </li> {{-- delete --}}
                                     </form>
                                     </li>
@@ -92,7 +92,7 @@ Admin Users
         if(elem.html() != ""){
             setTimeout(() => {
                 elem.fadeOut("slow");
-            }, 1800);
+            }, 1700);
         }
 </script>
 

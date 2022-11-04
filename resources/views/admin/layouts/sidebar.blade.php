@@ -1,6 +1,6 @@
 
  <!-- ======= Header ======= -->
- <header id="header" class="header fixed-top d-flex align-items-center">
+ <header id="header" class="header fixed-top d-flex align-items-center justify-content-between">
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center">
@@ -10,6 +10,25 @@
     <i class="bi bi-list toggle-sidebar-btn"></i>
   </div><!-- End Logo -->
 
+  <div>
+    
+    @if (session()->has('alert'))
+        
+    <div class="custom-alert bg-success rounded-1 text-white px-3 py-2 mx-3">
+      <i class="bi bi-check-circle"></i>&nbsp {{ session('alert') }}
+    </div>
+
+    @endif
+    
+    @if (session()->has('error'))
+        
+    <div class="custom-alert bg-danger rounded-1 text-white px-3 py-2 mx-3">
+      <i class="bi bi-exclamation-circle"></i>&nbsp {{ session('error') }}
+    </div>
+
+    @endif
+
+  </div>
 
 </header><!-- End Header -->
 
