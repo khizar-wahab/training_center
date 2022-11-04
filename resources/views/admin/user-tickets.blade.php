@@ -32,7 +32,7 @@ Admin Users | {{ $user->name }} Tickets
                       </tr>
                     </thead>
                     <tbody>
-                       @foreach ($user->tickets as $i => $ticket)
+                       @forelse ($user->tickets as $i => $ticket)
                            
                        <tr>
                         <th>{{ $i + 1 }}</th>
@@ -47,20 +47,23 @@ Admin Users | {{ $user->name }} Tickets
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        {{-- <form action="{{ route('adminUser.destroy', $user->id) }}" method="POST">
+                                        <form action="{{ route('adminTicket.destroy', $ticket->id) }}" method="POST">
                                             <input name="_method" type="hidden" value="DELETE">
                                             {{ csrf_field() }}
-                                    <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
-                                                style="border: none; background:none;  position: relative; right:6px;">Delete</button></a>
-                                    </li>
-                                    </form> --}}
+                                    <li><button type="submit" class="dropdown-item">Delete</button>
+                                    </li> {{-- delete --}}
+                                    </form>
                                     </li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
 
-                       @endforeach
+                       @empty
+                       <tr>
+                        <td class="text-center" colspan="5">No tickets found</td>
+                       </tr>
+                       @endforelse
                     </tbody>
                   </table>
                   <!-- End Default Table Example -->

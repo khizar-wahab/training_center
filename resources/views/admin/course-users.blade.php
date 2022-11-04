@@ -28,39 +28,23 @@ Admin Courses | {{ $course->title }} Users
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Enroll Date</th>
-                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                       @foreach ($course->users as $i => $user)
+                       @forelse ($course->users as $i => $user)
                            
                        <tr>
                         <th>{{ $i + 1 }}</th>
                         <td><a href="{{ route('adminUser.edit', $user->id) }}">{{$user->name }}</a></td>
                         <td>{{ $user->email }}</td>
                         <td>{{ \Illuminate\Support\carbon::parse($user->tickets()->where('course_id', $course->id)->first()->create_at)->format('M d Y') }}</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle rounded" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Action
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        {{-- <form action="{{ route('adminUser.destroy', $user->id) }}" method="POST">
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            {{ csrf_field() }}
-                                    <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
-                                                style="border: none; background:none;  position: relative; right:6px;">Delete</button></a>
-                                    </li>
-                                    </form> --}}
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
                     </tr>
 
-                       @endforeach
+                       @empty
+                       <tr>
+                        <td class="text-center" colspan="4">No enrolled users found</td>
+                       </tr>
+                       @endforelse
                     </tbody>
                   </table>
                   <!-- End Default Table Example -->
