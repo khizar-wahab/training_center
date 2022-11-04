@@ -104,7 +104,7 @@ Admin Profile
 @push('scripts')
 
 <script>
-    $(".sidebar-item:eq(3)").removeClass('collapsed');
+    $(".sidebar-item:eq(4)").removeClass('collapsed');
     var elem = $('.custom-alert:eq(0)');
     console.log(elem.html());
     if(elem.html() != ""){

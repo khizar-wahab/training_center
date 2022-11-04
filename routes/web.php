@@ -16,6 +16,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
 use App\Http\Controllers\User\Auth\ForgotPasswordController as UserForgotPasswordController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\TicketController as AdminTicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +80,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::resource('adminCourse', AdminCourseController::class)->middleware(['auth:admin']);
 // Admin User Crud
 Route::resource('adminUser', AdminUserController::class)->middleware(['auth:admin']);
+// Admin Ticket Crud
+Route::resource('adminTicket', AdminTicketController::class)->middleware(['auth:admin']);
 
 
 /*

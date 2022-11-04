@@ -21,7 +21,9 @@ Admin Courses
                     <h5 class="card-title">Courses</h5>
 
                     <!-- Default Table -->
-                    <table class="table table-responsive-md">
+                    <div class="table-responsive-md">
+
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -61,8 +63,7 @@ Admin Courses
                                                     method="POST">
                                                     <input name="_method" type="hidden" value="DELETE">
                                                     {{ csrf_field() }}
-                                            <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
-                                                        style="border: none; background:none;  position: relative; right:6px;">Delete</button></a>
+                                            <li><button type="submit" class="dropdown-item">Delete</button>
                                             </li> {{-- delete --}}
                                             </form>
                                             </li>
@@ -73,6 +74,9 @@ Admin Courses
                             @endforeach
                         </tbody>
                     </table>
+
+                    </div>
+
                 </div>
             </div>
             <div class="row">
