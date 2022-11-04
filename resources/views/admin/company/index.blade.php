@@ -131,7 +131,6 @@ Admin | Companies
     @push('scripts')
 
     <script>
-      $(".sidebar-item:eq(2)").removeClass('collapsed');
         var elem = $('.custom-alert:eq(0)');
         console.log(elem.html());
         if(elem.html() != ""){

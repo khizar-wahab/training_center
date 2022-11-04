@@ -121,7 +121,7 @@ Admin dashboard
 @push('scripts')
     
     <script>
-        $(".sidebar-item:eq(0)").removeClass('collapsed');
+        
     </script>
 
 @endpush

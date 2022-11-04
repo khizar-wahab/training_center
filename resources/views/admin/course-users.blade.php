@@ -74,7 +74,6 @@ Admin Courses | {{ $course->title }} Users
 @push('scripts')
 
 <script>
-    $(".sidebar-item:eq(1)").removeClass('collapsed');
         var elem = $('.custom-alert:eq(0)');
         console.log(elem.html());
         if(elem.html() != ""){
