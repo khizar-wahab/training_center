@@ -57,7 +57,7 @@
     </li><!-- End Components Nav -->
     
     <li class="nav-item">
-      <a class="nav-link sidebar-item {{ Route::is('admin-companies.*')? 'active': 'collapsed'}}" href="{{ route('admin-companies.view') }}">
+      <a class="nav-link sidebar-item {{ Route::is('admin.admin-companies.*')? 'active': 'collapsed'}}" href="{{ route('admin.admin-companies.view') }}">
         <i class="bi bi-bank2"></i><span>Company</span>
       </a>
     </li>

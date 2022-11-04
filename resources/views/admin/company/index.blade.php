@@ -24,7 +24,7 @@ Admin | Companies
             </div>
           </div>
           <div class="col-lg-2">
-            <a href="{{ route('admin-companies.create') }}" class="btn btn-primary">Add Company</a>
+            <a href="{{ route('admin.admin-companies.create') }}" class="btn btn-primary">Add Company</a>
           </div>
           <div class="col-lg-12">
             @if (session()->has('success'))
@@ -78,10 +78,10 @@ Admin | Companies
                     </button>
                     <ul class="dropdown-menu">
                       <li>
-                        <a class="dropdown-item" href="{{ route('admin-companies.status', ['id'=>$company->id,'status'=>1]) }}">Active</a>
+                        <a class="dropdown-item" href="{{ route('admin.admin-companies.status', ['id'=>$company->id,'status'=>1]) }}">Active</a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="{{ route('admin-companies.status', ['id'=>$company->id,'status'=>0]) }}">Dective</a>
+                        <a class="dropdown-item" href="{{ route('admin.admin-companies.status', ['id'=>$company->id,'status'=>0]) }}">Dective</a>
                       </li>
                       </form>
                       </li>
@@ -95,9 +95,9 @@ Admin | Companies
                       Action
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{{ route('admin-companies.edit', $company->id) }}">Edit</a></li>
+                      <li><a class="dropdown-item" href="{{ route('admin.admin-companies.edit', $company->id) }}">Edit</a></li>
                       <li>
-                        <form action="{{ route('admin-companies.destroy', $company->id) }}" method="POST">
+                        <form action="{{ route('admin.admin-companies.destroy', $company->id) }}" method="POST">
                           <input name="_method" type="hidden" value="DELETE">
                           {{ csrf_field() }}
                       <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
@@ -109,7 +109,7 @@ Admin | Companies
                   </div>
                 </td>
                 <td>
-                  <a href="{{  route('admin-companies.viewdetail',$company->id) }}" class="btn btn-outline-primary"><i class="bi bi-eye"></i> &nbsp;View</a>
+                  <a href="{{  route('admin.admin-companies.viewdetail',$company->id) }}" class="btn btn-outline-primary"><i class="bi bi-eye"></i> &nbsp;View</a>
                 </td>
               </tr>
               @endforeach
