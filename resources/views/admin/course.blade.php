@@ -18,10 +18,12 @@ Admin Courses
 
             <div class="card mt-5 pt-4 pb-4">
                 <div class="card-body">
-                    <h2 class="text-center">Users</h2>
+                    <h2 class="text-center mb-3">Courses</h2>
 
                     <!-- Default Table -->
-                    <table class="table table-responsive-md">
+                    <div class="table-responsive-md">
+
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -71,6 +73,9 @@ Admin Courses
                             @endforeach
                         </tbody>
                     </table>
+
+                    </div>
+
                 </div>
             </div>
             <div class="row">
