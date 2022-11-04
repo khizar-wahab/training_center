@@ -55,6 +55,12 @@
         <i class="bi bi-book"></i><span>Courses</span>
       </a>
     </li><!-- End Components Nav -->
+    
+    <li class="nav-item">
+      <a class="nav-link collapsed sidebar-item" href="{{ route('admin-companies.view') }}">
+        <i class="bi bi-bank2"></i><span>Company</span>
+      </a>
+    </li>
 
     <li class="nav-item">
       <a class="nav-link collapsed sidebar-item" href="{{ route('adminTicket.index') }}">
@@ -71,7 +77,7 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed sidebar-item" href="{{ route('admin.logout') }}">
-        <i class="bi bi-person"></i>
+        <i class="bi bi-box-arrow-right"></i>
         <span>Logout</span>
       </a>
     </li><!-- End Profile Logout Nav -->
