@@ -42,8 +42,8 @@ Admin dashboard
                                 <i class="bx bx-user"></i>
                               </div>
                               <div class="ps-3">
-                                <h6>@if ($users < 10)
-                                  0{{ $users }}
+                                <h6>@if ($users < 10 && $users !== 0)
+                                    0{{ $users }}
                                 @else
                                     {{ $users }}
                                 @endif</h6>
@@ -67,7 +67,7 @@ Admin dashboard
                                 <i class="bx bx-book"></i>
                               </div>
                               <div class="ps-3">
-                                <h6>@if ($courses < 10)
+                                <h6>@if ($courses < 10 && $courses !== 0)
                                     0{{ $courses }}
                                 @else
                                     {{ $courses }}
@@ -93,7 +93,7 @@ Admin dashboard
                                 <i class="bx bx-purchase-tag"></i>
                               </div>
                               <div class="ps-3">
-                                <h6>@if ($tickets < 10)
+                                <h6>@if ($tickets < 10 && $tickets !== 0)
                                     0{{ $tickets }}
                                 @else
                                     {{ $tickets }}
