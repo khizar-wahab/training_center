@@ -75,21 +75,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Courses
         Route::get('/courses/{course}/users', [AdminCourseController::class, 'courseUsers'])->name('courses.users');
     });
+    Route::name('admin-companies.')->group(function () {
+        Route::get('companies/view',[CompanyController::class,'view'])->name('view');
+        Route::get('companies/viewdetail/{id}',[CompanyController::class,'viewdetail'])->name('viewdetail');
+        Route::get('company/create',[CompanyController::class,'create'])->name('create');
+        Route::post('company/store',[CompanyController::class,'store'])->name('store');
+        Route::get('company/edit/{id}',[CompanyController::class,'edit'])->name('edit');
+        Route::post('company/update/{id}',[CompanyController::class,'companyupdate'])->name('update');
+        Route::get('company/{id}/{status}',[CompanyController::class,'status'])->name('status');
+        Route::delete('company/{company}/',[CompanyController::class,'destroy'])->name('destroy');
+    });
 });
 // Admin Course Crud
 Route::resource('adminCourse', AdminCourseController::class)->middleware(['auth:admin']);
 // Admin User Crud
 Route::resource('adminUser', AdminUserController::class)->middleware(['auth:admin']);
-Route::name('admin-companies.')->group(function () {
-    Route::get('companies/view',[CompanyController::class,'view'])->name('view');
-    Route::get('companies/viewdetail/{id}',[CompanyController::class,'viewdetail'])->name('viewdetail');
-    Route::get('company/create',[CompanyController::class,'create'])->name('create');
-    Route::post('company/store',[CompanyController::class,'store'])->name('store');
-    Route::get('company/edit/{id}',[CompanyController::class,'edit'])->name('edit');
-    Route::post('company/update/{id}',[CompanyController::class,'companyupdate'])->name('update');
-    Route::get('company/{id}/{status}',[CompanyController::class,'status'])->name('status');
-    Route::delete('company/{company}/',[CompanyController::class,'destroy'])->name('destroy');
-});
+
 // Admin Ticket Crud
 Route::resource('adminTicket', AdminTicketController::class)->middleware(['auth:admin']);
 
@@ -135,5 +136,5 @@ Route::prefix('user')->name('user.')->group(function () {
 Route::get('/company',[CompanyController::class,'index'])->name('register-company');
 Route::post('/company/register',[CompanyController::class,'register'])->name('company.register');
 Route::get('/company/profile',[CompanyController::class,'profile'])->name('company.profile');
-Route::get('/company/update/{id?}',[CompanyController::class,'updateCompany'])->name('update-company');
 Route::post('/company/update/',[CompanyController::class,'update'])->name('company.update');
+Route::get('/company/update/{id?}',[CompanyController::class,'updateCompany'])->name('update-company');
