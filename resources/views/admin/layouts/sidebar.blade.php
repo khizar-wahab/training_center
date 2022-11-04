@@ -3,7 +3,7 @@
  <header id="header" class="header fixed-top d-flex align-items-center">
 
   <div class="d-flex align-items-center justify-content-between">
-    <a href="index.html" class="logo d-flex align-items-center">
+    <a href="{{ url('/admin/dashboard') }}" class="logo d-flex align-items-center">
       <img src="assets/img/logo.png" alt="">
       <span class="d-none d-lg-block">Admin Panel</span>
     </a>
@@ -36,6 +36,12 @@
         <i class="bi bi-book"></i><span>Courses</span>
       </a>
     </li><!-- End Components Nav -->
+    
+    <li class="nav-item">
+      <a class="nav-link collapsed sidebar-item" href="{{ route('admin-companies.view') }}">
+        <i class="bi bi-bank2"></i><span>Company</span>
+      </a>
+    </li>
 
     <li class="nav-item">
       <a class="nav-link collapsed sidebar-item" href="{{ route('admin.profile') }}">
@@ -46,7 +52,7 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed sidebar-item" href="{{ route('admin.logout') }}">
-        <i class="bi bi-person"></i>
+        <i class="bi bi-box-arrow-right"></i>
         <span>Logout</span>
       </a>
     </li><!-- End Profile Logout Nav -->

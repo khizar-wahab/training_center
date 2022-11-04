@@ -18,7 +18,7 @@ Admin Courses
 
             <div class="card mt-5 pt-4 pb-4">
                 <div class="card-body">
-                    <h2 class="text-center">Users</h2>
+                    <h2 class="text-center">Courses</h2>
 
                     <!-- Default Table -->
                     <table class="table table-responsive-md">

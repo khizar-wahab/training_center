@@ -73,8 +73,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::resource('adminCourse', AdminCourseController::class)->middleware(['auth:admin']);
 // Admin User Crud
 Route::resource('adminUser', AdminUserController::class)->middleware(['auth:admin']);
-
-
+Route::name('admin-companies.')->group(function () {
+    Route::get('companies/view',[CompanyController::class,'view'])->name('view');
+    Route::get('companies/viewdetail/{id}',[CompanyController::class,'viewdetail'])->name('viewdetail');
+    Route::get('company/create',[CompanyController::class,'create'])->name('create');
+    Route::post('company/store',[CompanyController::class,'store'])->name('store');
+    Route::get('company/edit/{id}',[CompanyController::class,'edit'])->name('edit');
+    Route::post('company/update/{id}',[CompanyController::class,'companyupdate'])->name('update');
+    Route::get('company/{id}/{status}',[CompanyController::class,'status'])->name('status');
+    Route::delete('company/{company}/',[CompanyController::class,'destroy'])->name('destroy');
+});
 /*
 |--------------------------------------------------------------------------
 | User Routes
