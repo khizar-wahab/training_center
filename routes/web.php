@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\JobsController as AdminJobsController;
 use App\Http\Controllers\User\CoursesController as UserCoursesController;
 use App\Http\Controllers\User\TicketsController as UserTicketsController;
 use App\Http\Controllers\User\JobsController as UserJobsController;
@@ -69,13 +70,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Admin profile
         Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile');
         Route::post('/profile/update', [AdminProfileController::class, 'update_profile'])->name('profile.update');
+        Route::post('/profile/change/password', [AdminProfileController::class, 'change_password'])->name('profile.changePass');
 
         // Users
         Route::get('/users/{user}/tickets', [AdminUserController::class, 'tickets'])->name('user.tickets');
 
         // Courses
         Route::get('/courses/{course}/users', [AdminCourseController::class, 'courseUsers'])->name('courses.users');
+
+        // Jobs
+        Route::resource('/jobs', AdminJobsController::class);
     });
+    
+    // Admin Companies Crud
     Route::name('admin-companies.')->group(function () {
         Route::get('companies/view',[CompanyController::class,'view'])->name('view');
         Route::get('companies/viewdetail/{id}',[CompanyController::class,'viewdetail'])->name('viewdetail');
@@ -91,6 +98,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::resource('adminCourse', AdminCourseController::class)->middleware(['auth:admin']);
 // Admin User Crud
 Route::resource('adminUser', AdminUserController::class)->middleware(['auth:admin']);
+
 
 // Admin Ticket Crud
 Route::resource('adminTicket', AdminTicketController::class)->middleware(['auth:admin']);

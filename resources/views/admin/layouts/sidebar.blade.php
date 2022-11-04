@@ -38,38 +38,44 @@
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link collapsed sidebar-item" href="{{ route('admin.dashboard') }}">
+      <a class="nav-link collapsed sidebar-item {{ Route::is('admin.dashboard')? 'active': ''}}" href="{{ route('admin.dashboard') }}">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed sidebar-item" href="{{ route('adminUser.index') }}">
+      <a class="nav-link sidebar-item {{ Route::is('adminUser.index')? 'active': 'collapsed'}}" href="{{ route('adminUser.index') }}">
         <i class="bi bi-people"></i><span>User</span>
       </a>
     </li><!-- End Components Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed sidebar-item" href="{{ route('adminCourse.index') }}">
+      <a class="nav-link sidebar-item {{ Route::is('adminCourse.index')? 'active ddd': 'collapsed'}}" href="{{ route('adminCourse.index') }}">
         <i class="bi bi-book"></i><span>Courses</span>
       </a>
     </li><!-- End Components Nav -->
     
     <li class="nav-item">
-      <a class="nav-link collapsed sidebar-item" href="{{ route('admin-companies.view') }}">
+      <a class="nav-link sidebar-item {{ Route::is('admin-companies.view')? 'active': 'collapsed'}}" href="{{ route('admin-companies.view') }}">
         <i class="bi bi-bank2"></i><span>Company</span>
       </a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link collapsed sidebar-item" href="{{ route('adminTicket.index') }}">
+      <a class="nav-link sidebar-item {{ Route::is('adminTicket.index')? 'active': 'collapsed'}}" href="{{ route('adminTicket.index') }}">
         <i class="bi bi-cash"></i><span>Tickets</span>
       </a>
     </li><!-- End Components Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed sidebar-item" href="{{ route('admin.profile') }}">
+      <a class="nav-link sidebar-item {{ Route::is('admin.jobs.index')? 'active': 'collapsed'}}" href="{{ route('admin.jobs.index') }}">
+        <i class="bi bi-cash"></i><span>Jobs</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link sidebar-item {{ Route::is('admin.profile')? 'active': 'collapsed'}}" href="{{ route('admin.profile') }}">
         <i class="bi bi-person"></i>
         <span>Profile</span>
       </a>
