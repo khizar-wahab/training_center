@@ -90,6 +90,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('company/store',[CompanyController::class,'store'])->name('store');
         Route::get('company/edit/{id}',[CompanyController::class,'edit'])->name('edit');
         Route::post('company/update/{id}',[CompanyController::class,'companyupdate'])->name('update');
+        Route::get('company/{company}/jobs', [CompanyController::class, 'companyJobs'])->name('jobs');
         Route::get('company/{id}/{status}',[CompanyController::class,'status'])->name('status');
         Route::delete('company/{company}/',[CompanyController::class,'destroy'])->name('destroy');
     });

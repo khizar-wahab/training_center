@@ -232,4 +232,9 @@ class CompanyController extends Controller
             return redirect()->back()->with('error','Failed to delete company!');
         }
     }
+
+    public function companyJobs(Company $company)
+    {
+        return view('admin.company.jobs', compact('company'));
+    }
 }
