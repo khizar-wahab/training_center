@@ -36,7 +36,7 @@ Admin Users | {{ $user->name }} Tickets
                            
                        <tr>
                         <th>{{ $i + 1 }}</th>
-                        <td>{{ $ticket->course->title }}</td>
+                        <td><a href="{{ route('adminCourse.edit', $ticket->course->id) }}">{{$ticket->course->title }}</a></td>
                         <td>{{ $ticket->course->traiPro }}</td>
                         <td>{{ \Illuminate\Support\carbon::parse($ticket->created_at)->format('M d Y') }}</td>
                         <td>

@@ -70,6 +70,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Users
         Route::get('/users/{user}/tickets', [AdminUserController::class, 'tickets'])->name('user.tickets');
+
+        // Courses
+        Route::get('/courses/{course}/users', [AdminCourseController::class, 'courseUsers'])->name('courses.users');
     });
 });
 // Admin Course Crud
