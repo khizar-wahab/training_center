@@ -17,47 +17,54 @@ class ProfileController extends Controller
 
     public function update_profile(Request $request)
     {
-        if($request->name != "" || $request->email != ""){
-            if($request->password != ""){
-                if($request->password == session('admin_password')){
-                    if($request->nPassword != "" || $request->cPassword != ""){
+        if($request->name != ""){
+            if($request->email != ""){
+                $admin = Admin::find(Auth::guard('admin')->user()->id);
+                if($admin){
+                    $admin->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                    ]);
+
+                    return redirect()->back()->with(session()->flash('alert', 'Profile updated.'));
+                }
+            }else{
+                return redirect()->back()->with(session()->flash('error', 'Please fill all the fields.'));
+            }
+        }else{
+            return redirect()->back()->with(session()->flash('error', 'Please fill all the fields.'));
+        }
+    }
+
+    public function change_password(Request $request)
+    {
+        if($request->password != ""){
+            if($request->nPassword != ""){
+                if($request->cPassword != ""){
+                    if($request->password == session('admin_password')){
                         if($request->nPassword == $request->cPassword){
                             $admin = Admin::find(Auth::guard('admin')->user()->id);
                             if($admin){
                                 $admin->update([
-                                    'name' => $request->name,
-                                    'email' => $request->email,
                                     'password' => Hash::make($request->nPassword),
                                 ]);
-                            session()->put('admin_password', $request->nPassword);
-                            return redirect()->back()->with(session()->flash('alert', 'Profile updated.'));
+            
+                                return redirect()->back()->with(session()->flash('alert', 'Password changed.'));
+                            }
                         }else{
-                            return redirect()->back();
-                        }
-                        }else{
-                            return redirect()->back()->with(session()->flash('error', 'Passwords does not match.'));
+                            return redirect()->back()->with(session()->flash('error', 'Password confirmation does not match.'));
                         }
                     }else{
-                        $admin = Admin::find(Auth::guard('admin')->user()->id);
-                        if($admin){
-                            $admin->update([
-                                'name' => $request->name,
-                                'email' => $request->email,
-                            ]);
-    
-                            return redirect()->back()->with(session()->flash('alert', 'Profile updated.'));
-                        }else{
-                            return redirect()->back();
-                        }
+                        return redirect()->back()->with(session()->flash('error', 'Invalid current password'));
                     }
                 }else{
-                    return redirect()->back()->with(session()->flash('error', 'Invalid current password.'));
+                    return redirect()->back()->with(session()->flash('error', 'Please fill all the fields.'));
                 }
             }else{
-                return redirect()->back()->with(session()->flash('error', 'Enter current password.'));
+                return redirect()->back()->with(session()->flash('error', 'Please fill all the fields.'));
             }
         }else{
-            return redirect()->back()->with(session()->flash('error', 'Enter all the fields.'));
+            return redirect()->back()->with(session()->flash('error', 'Please fill all the fields.'));
         }
     }
 }

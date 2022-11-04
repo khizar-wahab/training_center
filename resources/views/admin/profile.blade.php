@@ -12,88 +12,135 @@ Admin Profile
         @include('admin.layouts.sidebar')
     </div>
     {{-- main content --}}
-    <div class="col-xl-10 col-sm-12">
-
-        <!-- Modal -->
-        <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                        <h2 class="text-center text-dark mt-4">Admin Profile</h2>
-                    <div class="modal-body">
-                        <form class="px-5 py-4" action="{{ route('admin.profile.update') }}" method="post">
-                            @csrf
-                            <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Name:</label>
-                              <input type="text" class="form-control" name="name" value="{{ Auth::guard('admin')->user()->name }}" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Email:</label>
-                              <input type="email" class="form-control" name="email" value="{{ Auth::guard('admin')->user()->email }}" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Current Password</label>
-                              <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-                            </div>
-                            <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">New Password (optioanl)</label>
-                              <input type="password" class="form-control" name="nPassword" id="exampleInputPassword1">
-                            </div>
-                            <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Confirm Password (optioanl)</label>
-                              <input type="password" class="form-control" name="cPassword" id="exampleInputPassword1">
-                            </div>
-                            <button type="submit" class="btn btn-primary rounded">Submit</button>
-                          </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-         <!--  -->
+    <div class="col-xl-10 col-sm-12 mt-5">
 
         <div class="container">
-            <form action="{{ route('adminCourse.store') }}" method="post" enctype="multipart/form-data"
-                class="bg-white px-5 py-5 card" style="margin-top: 200px">
-                @csrf
-                <h1 class="text-secondary text-center">Admin Profile</h1>
-                <div class="mb-4">
-                    <input type="text" name="name" id="admin-profile-name"
-                        value="{{ Auth::guard('admin')->user()->name }}" placeholder="Name"
-                        class="form-control border-left-0 border-right-0 border-top-0" id="exampleInputEmail1"
-                        aria-describedby="emailHelp" disabled>
-                    <span class="text-danger">
-                        @error('name')
-                        {{ $message }}
-                        @enderror
-                    </span>
-                </div>
-                <div class="mb-4">
-                    <input type="text" name="email" value="{{ Auth::guard('admin')->user()->email }}"
-                        placeholder="Email" class="form-control border-left-0 border-right-0 border-top-0"
-                        id="admin-profile-email" aria-describedby="emailHelp" disabled>
-                    <span class="text-danger">
-                        @error('email')
-                        {{ $message }}
-                        @enderror
-                    </span>
-                </div>
-                <div class="mb-4">
-                        <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
-                        <div class="input-group">
-                          <div class="input-group-text border-left-0 border-right-0 border-top-0"><i class="bi bi-eye" id="admin-profile-toggle-password"></i></div>
-                          <input type="password" value="{{ session('admin_password') }}" class="form-control border-left-0 border-right-0 border-top-0" id="admin-profile-password" placeholder="Username" disabled>
-                        </div>
-                    <span class="text-danger">
-                        @error('password')
-                        {{ $message }}
-                        @enderror
-                    </span>
-                </div>
-            </form>
 
-            <button  class="btn btn-primary rounded" id="admin-profile-modal" data-bs-toggle="modal" data-bs-target="#profileModal">Edit Profile</button>
+            <section class="section profile mt-5 pt-5">
+                <div class="row mt-5 pt-5">
+                  <div class="col-xl-12">
+          
+                    <div class="card">
+                      <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-bordered" role="tablist">
+          
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview" aria-selected="true" role="tab">Overview</button>
+                          </li>
+          
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit" aria-selected="false" tabindex="-1" role="tab">Edit Profile</button>
+                          </li>
+          
+          
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password" aria-selected="false" tabindex="-1" role="tab">Change Password</button>
+                          </li>
+          
+                        </ul>
+                        <div class="tab-content pt-2">
+          
+                          <div class="tab-pane fade show active profile-overview" id="profile-overview" role="tabpanel">
+          
+                            <h5 class="card-title">Profile Details</h5>
+          
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label ">Name</div>
+                              <div class="col-lg-9 col-md-8">{{ Auth::guard('admin')->user()->name }}</div>
+                            </div>
+          
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Email</div>
+                              <div class="col-lg-9 col-md-8">{{ Auth::guard('admin')->user()->email }}</div>
+                            </div>
+          
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Last edited</div>
+                              <div class="col-lg-9 col-md-8">{{ \Illuminate\Support\carbon::parse(Auth::guard('admin')->user()->updated_at)->format('M d Y') }}</div>
+                            </div>
+          
+                          </div>
+          
+                          <div class="tab-pane fade profile-edit" id="profile-edit" role="tabpanel">
+          
+                            <!-- Profile Edit Form -->
+                            <form action="{{ route('admin.profile.update') }}" method="post">
+
+                                @csrf
+
+                                <h5 class="card-title">Edit Profile</h5>
+            
+                                <div class="row mb-3">
+                                    <label for="name" class="col-md-2 col-lg-2 col-form-label">Name</label>
+                                    <div class="col-md-10 col-lg-10">
+                                    <input name="name" type="text" class="form-control" id="name">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="Email" class="col-md-2 col-lg-2 col-form-label">Email</label>
+                                    <div class="col-md-10 col-lg-10">
+                                    <input name="email" type="email" class="form-control" id="Email">
+                                    </div>
+                                </div>
+          
+          
+                              <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                              </div>
+                            </form><!-- End Profile Edit Form -->
+          
+                          </div>
+          
+                          <div class="tab-pane fade pt-3" id="profile-settings" role="tabpanel">
+          
+                          </div>
+          
+                          <div class="tab-pane fade" id="profile-change-password" role="tabpanel">
+                            <!-- Change Password Form -->
+                            <form action="{{ route('admin.profile.changePass') }}" method="post">
+
+                                @csrf
+
+                                <h5 class="card-title">Change Password</h5>
+          
+                                <div class="row mb-3">
+                                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                    <div class="col-md-8 col-lg-9">
+                                    <input name="password" type="password" class="form-control" id="currentPassword">
+                                    </div>
+                                </div>
+            
+                                <div class="row mb-3">
+                                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                                    <div class="col-md-8 col-lg-9">
+                                    <input name="nPassword" type="password" class="form-control" id="newPassword">
+                                    </div>
+                                </div>
+            
+                                <div class="row mb-3">
+                                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                                    <div class="col-md-8 col-lg-9">
+                                    <input name="cPassword" type="password" class="form-control" id="renewPassword">
+                                    </div>
+                                </div>
+            
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                </div>
+                            </form><!-- End Change Password Form -->
+          
+                          </div>
+          
+                        </div><!-- End Bordered Tabs -->
+          
+                      </div>
+                    </div>
+          
+                  </div>
+                </div>
+              </section>
 
         </div>
 
@@ -104,7 +151,6 @@ Admin Profile
 @push('scripts')
 
 <script>
-    $(".sidebar-item:eq(4)").removeClass('collapsed');
     var elem = $('.custom-alert:eq(0)');
     console.log(elem.html());
     if(elem.html() != ""){

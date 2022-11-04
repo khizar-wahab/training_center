@@ -17,17 +17,18 @@ Admin | Company Detail
     <div class="container mt-5">
       <div class="card">
         <div class="card-header">
-          <h3>Company Detail</h3>
+          <h5>Company Detail</h5>
         </div>
         <img src="{{ asset('storage/'.$company->image ?? '') }}" class="d-block" style="height: 450px">
         <div class="card-body">
           <h5 class="card-title">{{ $company->name }}</h5>
           <p class="card-text">
             Email: {{ $company->email }} <br>
-            Owner: {{ $company->user_name }}
+            Owner: {{ $company->user_name }}<br>
+            Phone: {{ $company->phone }}
           </p>
           <p class="card-text">
-            Address: {{ $company->street, $company->city, $company->state, $company->address}}
+            Address: {{ $company->street .', '.$company->city .', '.$company->state .', '. $company->address}}
           </p>
           <p class="card-text">
             {{ $company->description }}
@@ -41,7 +42,6 @@ Admin | Company Detail
 @push('scripts')
 
 <script>
-  $(".sidebar-item:eq(2)").removeClass('collapsed');
         var elem = $('.custom-alert:eq(0)');
         console.log(elem.html());
         if(elem.html() != ""){

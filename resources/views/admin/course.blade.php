@@ -18,8 +18,19 @@ Admin Courses
 
             <div class="card mt-5 pt-4 pb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Courses</h5>
-
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h5 class="card-title">Courses</h5>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="col-6 d-flex justify-content-end">
+                                <a href="{{ route('adminCourse.create') }}">
+                                    <button class="btn btn-primary rounded d-flex align-items-center admin-add-items">Add
+                                        Course</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Default Table -->
                     <div class="table-responsive-md">
 
@@ -37,7 +48,7 @@ Admin Courses
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($courses as $course)
+                            @forelse ($courses as $course)
                             <tr>
                                 <th>{{ $course->id }}</th>
                                 <td>{{ $course->title }}</td>
@@ -71,7 +82,15 @@ Admin Courses
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+
+                            @empty
+
+                            <tr>
+                                <td class="text-center" colspan="8">No Courses found</td>
+                            </tr>
+
+                            @endforelse
+
                         </tbody>
                     </table>
 
@@ -83,12 +102,6 @@ Admin Courses
                 <div class="col-6">
                     @if ($courses->links() !== "")
                     {{ $courses->links() }}
-                </div>
-                <div class="col-6 d-flex justify-content-end">
-                    <a href="{{ route('adminCourse.create') }}">
-                        <button class="btn btn-primary rounded d-flex align-items-center admin-add-items">Add
-                            Course</button>
-                    </a>
                 </div>
                 @endif
             </div>
@@ -106,7 +119,6 @@ Admin Courses
 
         <script>
 
-            $(".sidebar-item:eq(2)").removeClass('collapsed');
                 var elem = $('.custom-alert:eq(0)');
                 console.log(elem.html());
                 if(elem.html() != ""){

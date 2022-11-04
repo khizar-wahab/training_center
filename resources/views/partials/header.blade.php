@@ -23,8 +23,13 @@
                     <li class="nav-item">
                         <a class="ts-scroll" href="#Contact">للتواصل</a>
                     </li>
+                    
                     <li class="nav-item">
-                        <a class="" href="{{ route('register-company') }}">تسجيل الشركة</a>
+                        @if(auth()->guard('web')->user() && auth()->guard('web')->user()->type==1)
+                            <a class="" href="{{ route('company.profile') }}">شركة</a>
+                        @else
+                            <a class="" href="{{ route('register-company') }}">تسجيل الشركة</a>
+                        @endif
                     </li>
 
                     
@@ -117,7 +122,10 @@
 
                                     }else if(type == '2'){
                                         // for course details
-                                        window.location.href = '/course-detail/' + lastResult;
+                                        window.location.href = '/ticket-detail/' + lastResult;
+                                    }
+                                    else {
+                                        alert("Could not scan qrcode");
                                     }
 
                                 }

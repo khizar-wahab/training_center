@@ -6,6 +6,21 @@ Admin Courses | {{ $course->title }} Users
 
 @section('content')
 
+<style>
+    @media print {
+        #header, #sidebar, .export-btn {
+            display: none !important;
+        }
+
+        .print {
+            position: fixed;
+            width: 100%;
+            left: 0px;
+            top: 0px;
+        }        
+    }
+</style>
+
 <div class="row">
     {{-- sidebar --}}
     <div class="col-2 sidebar-parent">
@@ -15,8 +30,10 @@ Admin Courses | {{ $course->title }} Users
     <div class="col-xl-10 col-sm-12">
 
         <div class="container px-4 pt-1 pb-3 mt-5">
-
-            <div class="card mt-5 pt-4 pb-4">
+            <div class="d-flex justify-content-end mt-5">
+                <button class="btn btn-success export-btn" onclick="window.print()">Export</button>
+            </div>
+            <div class="card mt-5 pt-4 pb-4 print">
                 <div class="card-body">
                     <h5 class="card-title">{{$course->title}}'s enrolled users</h5>
 
@@ -57,7 +74,6 @@ Admin Courses | {{ $course->title }} Users
 @push('scripts')
 
 <script>
-    $(".sidebar-item:eq(1)").removeClass('collapsed');
         var elem = $('.custom-alert:eq(0)');
         console.log(elem.html());
         if(elem.html() != ""){
@@ -70,4 +86,3 @@ Admin Courses | {{ $course->title }} Users
 @endpush
 
 @endsection
-{{-- <a href="{{ route('adminCourse.create') }}"><button class="btn btn-primary">Add Course</button></a> --}}

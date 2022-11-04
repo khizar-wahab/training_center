@@ -35,7 +35,8 @@ Admin Users
                       </tr>
                     </thead>
                     <tbody>
-                       @foreach ($users as $i => $user)
+
+                       @forelse ($users as $i => $user)
                            
                        <tr>
                             <th>{{ $i + 1 }}</th>
@@ -68,7 +69,15 @@ Admin Users
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
+
+                        @empty
+
+                        <tr>
+                            <td class="text-center" colspan="5">No Users found</td>
+                        </tr>
+
+                        @endforelse
+
                         </tbody>
                     </table>
 
@@ -95,7 +104,6 @@ Admin Users
 @push('scripts')
 
 <script>
-    $(".sidebar-item:eq(1)").removeClass('collapsed');
         var elem = $('.custom-alert:eq(0)');
         console.log(elem.html());
         if(elem.html() != ""){

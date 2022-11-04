@@ -82,7 +82,7 @@ class CompanyController extends Controller
         $companies=DB::table('companies')
         ->join('users', 'users.id', '=', 'companies.user_id')
         ->select('companies.*', 'users.name as user_name')
-        ->get();
+        ->paginate(10);
         return view('admin.company.index',compact('companies'));
     }
     public function store(Request $request){
@@ -204,7 +204,9 @@ class CompanyController extends Controller
             }
 
             if($company->save()){
-                return redirect()->back()->with('success','Company Profile Updated Successfully');
+                return redirect()->back()->with('success','تم تحديث ملف الشركة بنجاح');
+            }else{
+                return redirect()->back()->with('error','فشل تحديث الشركة');
             }
         }
 

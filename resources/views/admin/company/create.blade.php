@@ -20,7 +20,7 @@ Admin | Add Company
       </div>
       <div class="card-body mt-5 bg-white py-5 px-5">
         <!-- Vertical Form -->
-        <form class="row g-3" action="{{ route('admin-companies.store') }}" method="post"
+        <form class="row g-3" action="{{ route('admin.admin-companies.store') }}" method="post"
           enctype="multipart/form-data">
           @csrf
           <div class="row mb-1">
@@ -158,7 +158,6 @@ Admin | Add Company
 @push('scripts')
 
 <script>
-  $(".sidebar-item:eq(2)").removeClass('collapsed');
         var elem = $('.custom-alert:eq(0)');
         console.log(elem.html());
         if(elem.html() != ""){
