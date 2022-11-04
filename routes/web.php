@@ -137,3 +137,6 @@ Route::post('/company/register',[CompanyController::class,'register'])->name('co
 Route::get('/company/profile',[CompanyController::class,'profile'])->name('company.profile');
 Route::get('/company/update/{id?}',[CompanyController::class,'updateCompany'])->name('update-company');
 Route::post('/company/update/',[CompanyController::class,'update'])->name('company.update');
+
+//Jobs Crud
+Route::resource('/job', UserJobsController::class, ['as'=>'company'])->middleware('auth:web');
