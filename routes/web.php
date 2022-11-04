@@ -81,6 +81,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Jobs
         Route::resource('/jobs', AdminJobsController::class);
     });
+    
+    // Admin Companies Crud
     Route::name('admin-companies.')->group(function () {
         Route::get('companies/view',[CompanyController::class,'view'])->name('view');
         Route::get('companies/viewdetail/{id}',[CompanyController::class,'viewdetail'])->name('viewdetail');
@@ -96,6 +98,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::resource('adminCourse', AdminCourseController::class)->middleware(['auth:admin']);
 // Admin User Crud
 Route::resource('adminUser', AdminUserController::class)->middleware(['auth:admin']);
+
+
 // Admin Ticket Crud
 Route::resource('adminTicket', AdminTicketController::class)->middleware(['auth:admin']);
 
