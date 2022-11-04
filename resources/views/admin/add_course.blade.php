@@ -16,8 +16,8 @@ Admin Add Course
         
         <div class="container mt-5">
 
-            <div class="card-body mt-5 bg-white py-5 px-5">
-                <h3 class="text-center">Add Course</h3>
+            <div class="card-body mt-5 bg-white">
+                <h5 class="card-title">Add Course</h5>
   
                 <!-- Vertical Form -->
                 <form class="row g-3" action="{{ route('adminCourse.store') }}" method="post" enctype="multipart/form-data">
