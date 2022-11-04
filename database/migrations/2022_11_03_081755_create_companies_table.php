@@ -23,7 +23,7 @@ class CreateCompaniesTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('address');
-            $table->string('description');
+            $table->longText('description');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

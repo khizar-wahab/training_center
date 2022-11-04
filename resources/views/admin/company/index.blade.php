@@ -115,6 +115,7 @@ Admin | Companies
               @endforeach
             </tbody>
           </table>
+          {{ $companies->links(("pagination::bootstrap-4")) }}
         </div>
       </div>
     </div>
