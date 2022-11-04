@@ -23,9 +23,6 @@ Admin | Jobs
               <h5 class="card-title">Jobs</h5>
             </div>
           </div>
-          <div class="col-lg-2">
-            <a href="{{ route('admin.jobs.create') }}" class="btn btn-primary">Add Jobs</a>
-          </div>
           <div class="col-lg-12">
             @if (session()->has('success'))
               <div class="alert alert-success alert-dismissible fade show ms-5 me-4" role="alert">
@@ -46,71 +43,21 @@ Admin | Jobs
           <table class="table table-responsive-md">
             <thead>
               <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Company Name</th>
-                <th scope="col">Company Owner Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-                <th scope="col">View</th>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Type</th>
+                <th scope="col">Last Date</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($companies = [] as $company)
+              @foreach ($jobs as $i => $job)
               <tr>
-                <th>{{ $company->id }}</th>
-                <td>{{ $company->name }}</td>
-                <td>{{ $company->user_name }}</td>
-                <td>{{ $company->email }}</td>
-                <td>{{ $company->phone }}</td>
-                <td>
-                  <div class="dropdown">
-                    <button class="btn btn-@php if($company->status==1){ echo "success"; }else{ echo "danger" ; } @endphp dropdown-toggle rounded"
-                      type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      @php
-                      if($company->status==1){
-                      echo "Active";
-                      }else{
-                      echo "Deactive";
-                      }
-                      @endphp
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="{{ route('admin-companies.status', ['id'=>$company->id,'status'=>1]) }}">Active</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="{{ route('admin-companies.status', ['id'=>$company->id,'status'=>0]) }}">Dective</a>
-                      </li>
-                      </form>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-                <td>
-                  <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle rounded" type="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      Action
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{{ route('admin-companies.edit', $company->id) }}">Edit</a></li>
-                      <li>
-                        <form action="{{ route('admin-companies.destroy', $company->id) }}" method="POST">
-                          <input name="_method" type="hidden" value="DELETE">
-                          {{ csrf_field() }}
-                      <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
-                            style="border: none; background:none;  position: relative; right:6px;">Delete</button></a>
-                      </li> {{-- delete --}}
-                      </form>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-                <td>
-                  <a href="{{  route('admin-companies.viewdetail',$company->id) }}" class="btn btn-outline-primary"><i class="bi bi-eye"></i> &nbsp;View</a>
-                </td>
+                <th>{{ $i + 1 }}</th>
+                <td>{{ $job->title }}</td>
+                <td>{{ $job->description }}</td>
+                <td>{{ $job->type }}</td>
+                <td>{{ \Illuminate\Support\Carbon::parse($job->last_date)->format('M j Y') }}</td>
               </tr>
               @endforeach
             </tbody>
@@ -120,10 +67,6 @@ Admin | Jobs
     </div>
 
     @push('scripts')
-
-    <script>
-      $(".nav-link:eq(2)").addClass('active');
-    </script>
 
     @endpush
 
