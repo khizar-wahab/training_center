@@ -43,9 +43,9 @@ class JobsController extends Controller
             'type' => 'nullable|string',
             'last_date' => 'nullable|date',
             'status' => ''
-            ]);
-            $job->fill($request->except('_token'));
-            $job->save();
+        ]);
+        $job->fill($request->except('_token'));
+        $job->save();
 
         return redirect()->route('company.job.index')->with('success','Job added.');
     }

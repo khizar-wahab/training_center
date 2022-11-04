@@ -95,6 +95,7 @@ Admin | Companies
                       Action
                     </button>
                     <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{{ route('admin.admin-companies.jobs', $company->id) }}">View Jobs</a></li>
                       <li><a class="dropdown-item" href="{{ route('admin.admin-companies.edit', $company->id) }}">Edit</a></li>
                       <li>
                         <form action="{{ route('admin.admin-companies.destroy', $company->id) }}" method="POST">

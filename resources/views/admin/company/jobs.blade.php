@@ -20,7 +20,7 @@ Admin | Jobs
         <div class="row">
           <div class="col-lg-10">
             <div class="card-header">
-              <h5 class="card-title">Jobs</h5>
+              <h5 class="card-title">{{ $company->name }}'s Jobs</h5>
             </div>
           </div>
           <div class="col-lg-12">
@@ -51,7 +51,7 @@ Admin | Jobs
               </tr>
             </thead>
             <tbody>
-              @foreach ($jobs as $i => $job)
+              @foreach ($jobs = [] as $i => $job)
               <tr>
                 <th>{{ $i + 1 }}</th>
                 <td>{{ $job->title }}</td>
