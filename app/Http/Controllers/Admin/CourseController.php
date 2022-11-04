@@ -69,7 +69,7 @@ class CourseController extends Controller
         ]);
 
         if($course){
-            return redirect()->back()->with(session()->flash('alert', 'Course added'));
+            return redirect('/adminCourse')->with(session()->flash('alert', 'Course added'));
         }
     }
 
@@ -133,7 +133,7 @@ class CourseController extends Controller
                 'traiPro' => $request->trainingProvider,
                 'img_path' => $img_path,
             ]);
-            return redirect()->back()->with(session()->flash('alert', 'Course updated'));
+            return redirect(session('red'))->with(session()->flash('alert', 'Course Updated.'));
         }else{
             return redirect()->back();
         }
@@ -154,5 +154,10 @@ class CourseController extends Controller
         }else{
             return redirect()->back();
         }
+    }
+
+    public function courseUsers(Course $course)
+    {
+        return view('admin.course-users', compact('course'));
     }
 }

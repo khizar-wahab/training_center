@@ -17,14 +17,17 @@ Admin Users
         <div class="container px-4 pt-1 pb-3 mt-5">
 
             <div class="card mt-5 pt-4 pb-4">
+
                 <div class="card-body">
-                  <h2 class="text-center">Users</h2>
-    
+                    <h5 class="card-title">Users</h5>
+                
+                <!-- Default Table -->
+                <div class="table-responsive-md">
                   <!-- Default Table -->
                   <table class="table table-responsive-md">
                     <thead>
                       <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
@@ -32,39 +35,45 @@ Admin Users
                       </tr>
                     </thead>
                     <tbody>
-                       @foreach ($users as $user)
+                       @foreach ($users as $i => $user)
                            
                        <tr>
-                        <th>{{ $user->id }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone }}</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle rounded" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Action
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('adminUser.edit', $user->id) }}">Edit</a></li>
-                                    <li>
-                                        <form action="{{ route('adminUser.destroy', $user->id) }}" method="POST">
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            {{ csrf_field() }}
-                                    <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
-                                                style="border: none; background:none;  position: relative; right:6px;">Delete</button></a>
-                                    </li> {{-- delete --}}
-                                    </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                            <th>{{ $i + 1 }}</th>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->phone }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle rounded" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item admin-table-links"
+                                        <li><a class="dropdown-item"
+                                                href="{{ route('admin.user.tickets', $user->id) }}">View Tickets</a>
+                                        </li>
+                                        <li><a class="dropdown-item admin-table-links"
+                                                href="{{ route('adminUser.edit', $user->id) }}">Edit</a></li>
+                                        <li>
+                                            <form action="{{ route('adminUser.destroy', $user->id) }}" method="POST">
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                {{ csrf_field() }}
+                                        <li><a class="dropdown-item" type="submit" href="#"><button type="submit"
+                                                    style="border: none; background:none;  position: relative; right:6px;">Delete</button></a>
+                                        </li> {{-- delete --}}
+                                        </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
 
-                       @endforeach
-                    </tbody>
-                  </table>
+                  </div>
+                 
                   <!-- End Default Table Example -->
                 </div>
               </div>
@@ -92,8 +101,12 @@ Admin Users
         if(elem.html() != ""){
             setTimeout(() => {
                 elem.fadeOut("slow");
-            }, 1800);
+            }, 1700);
         }
+
+    document.getElementsByClassName("admin-table-links").addEventListener("click", function(){
+        '{{ session()->put("red", url()->current()) }}';
+    });
 </script>
 
 @endpush

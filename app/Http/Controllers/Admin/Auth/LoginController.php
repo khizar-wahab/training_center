@@ -36,6 +36,8 @@ class LoginController extends Controller
     {
         Auth::guard('admin')->logout();
 
+        session()->forget('admin_password');
+
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();

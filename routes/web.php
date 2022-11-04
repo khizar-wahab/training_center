@@ -16,6 +16,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
 use App\Http\Controllers\User\Auth\ForgotPasswordController as UserForgotPasswordController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\TicketController as AdminTicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +68,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Admin profile
         Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile');
         Route::post('/profile/update', [AdminProfileController::class, 'update_profile'])->name('profile.update');
+
+        // Users
+        Route::get('/users/{user}/tickets', [AdminUserController::class, 'tickets'])->name('user.tickets');
+
+        // Courses
+        Route::get('/courses/{course}/users', [AdminCourseController::class, 'courseUsers'])->name('courses.users');
     });
 });
 // Admin Course Crud
@@ -83,6 +90,10 @@ Route::name('admin-companies.')->group(function () {
     Route::get('company/{id}/{status}',[CompanyController::class,'status'])->name('status');
     Route::delete('company/{company}/',[CompanyController::class,'destroy'])->name('destroy');
 });
+// Admin Ticket Crud
+Route::resource('adminTicket', AdminTicketController::class)->middleware(['auth:admin']);
+
+
 /*
 |--------------------------------------------------------------------------
 | User Routes
