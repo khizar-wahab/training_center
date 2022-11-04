@@ -28,6 +28,12 @@ class JobsController extends Controller
         return view('company.job.edit', ['job'=> $job]);
     }
 
+    //edit job form
+    public function show(Job $job)
+    {
+        return view('company.job.application', ['job'=> $job]);
+    }
+
     //store job information
     public function store(Request $request, Job $job)
     {
