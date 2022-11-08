@@ -12,7 +12,7 @@ class JobsController extends Controller
     public function index()
     {
         $company = auth()->user()->company()->first() ?? false;
-        $jobs = Job::all();
+        $jobs = $company ? $company->jobs : collect([]);
         return view('company.job.index', ['company'=> $company, 'jobs' => $jobs]);
     }
 
@@ -28,7 +28,7 @@ class JobsController extends Controller
         return view('company.job.edit', ['job'=> $job]);
     }
 
-    //edit job form
+    //show job application
     public function show(Job $job)
     {
         return view('company.job.application', ['job'=> $job]);
@@ -45,6 +45,7 @@ class JobsController extends Controller
             'status' => ''
         ]);
         $job->fill($request->except('_token'));
+        $job->company_id = auth()->user()->company->id ?? 0;
         $job->save();
 
         return redirect()->route('company.job.index')->with('success','Job added.');

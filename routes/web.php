@@ -46,6 +46,7 @@ Route::view('/', 'index')->middleware('guest:web');
 
 Route::get('/details/{code}',[FrontController::class, 'details']);
 Route::get('/jobs/{code}',[FrontController::class, 'jobs']);
+Route::get('/apply/{job}',[FrontController::class, 'apply'])->name('job.apply');
 Route::get('/ticket-detail/{code}', [FrontController::class, 'ticketDetails']);
 
 /*
@@ -141,6 +142,7 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/tickets', [UserTicketsController::class, 'index'])->name('tickets.index');
 
         Route::get('/jobs', [UserJobsController::class, 'index'])->name('jobs');
+        Route::get('/apply/{job}', [UserJobsController::class, 'apply'])->name('apply');
     });
 });
 Route::get('/company',[CompanyController::class,'index'])->name('register-company');
